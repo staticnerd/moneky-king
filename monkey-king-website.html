@@ -1,0 +1,3150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monkey King: Journey to the West — An Epic Stage Production</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,700&family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cormorant+SC:wght@300;400;500;600&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   FOUNDATIONS
+═══════════════════════════════════════════ */
+:root {
+  --gold:        #C9A84C;
+  --gold-bright: #E8C76A;
+  --gold-pale:   #F2E4BE;
+  --gold-dim:    #7A6330;
+  --gold-ghost:  rgba(201,168,76,0.12);
+  --ink:         #000000;
+  --ink-deep:    #030200;
+  --ink-warm:    #0A0700;
+  --ink-mid:     #0F0B04;
+  --cream:       #F5EDD8;
+  --red-accent:  #8B1A1A;
+  --text-body:   rgba(242,228,190,0.80);
+  --text-muted:  rgba(201,168,76,0.45);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  background:var(--ink);
+  color:var(--gold-pale);
+  font-family:'Cormorant',Georgia,serif;
+  overflow-x:hidden;
+  cursor:default;
+}
+::selection{background:var(--gold);color:var(--ink)}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--ink)}
+::-webkit-scrollbar-thumb{background:var(--gold-dim)}
+
+/* ── GRAIN TEXTURE ── */
+body::after{
+  content:'';
+  position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity:.028;
+  pointer-events:none;
+  z-index:9000;
+}
+
+/* ═══════════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════════ */
+#nav{
+  position:fixed;top:0;left:0;right:0;
+  z-index:800;
+  padding:28px 64px;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:all .5s cubic-bezier(.16,1,.3,1);
+}
+#nav.solid{
+  background:rgba(0,0,0,.96);
+  backdrop-filter:blur(24px);
+  padding:18px 64px;
+  border-bottom:1px solid rgba(201,168,76,.1);
+}
+.nav-brand{
+  display:flex;flex-direction:column;
+  text-decoration:none;gap:3px;
+}
+.nav-brand-top{
+  font-family:'Cormorant SC',serif;
+  font-size:11px;letter-spacing:.5em;
+  color:var(--gold);text-transform:uppercase;
+  font-weight:500;
+}
+.nav-brand-bottom{
+  font-family:'Cormorant SC',serif;
+  font-size:8px;letter-spacing:.45em;
+  color:var(--gold-dim);text-transform:uppercase;
+}
+.nav-links{
+  display:flex;align-items:center;gap:44px;
+  list-style:none;
+}
+.nav-links a{
+  font-family:'Cormorant SC',serif;
+  font-size:9.5px;letter-spacing:.35em;
+  color:rgba(201,168,76,.55);
+  text-decoration:none;text-transform:uppercase;
+  transition:color .3s;position:relative;
+}
+.nav-links a::after{
+  content:'';position:absolute;
+  bottom:-4px;left:0;width:0;height:1px;
+  background:var(--gold);
+  transition:width .35s cubic-bezier(.16,1,.3,1);
+}
+.nav-links a:hover{color:var(--gold-bright)}
+.nav-links a:hover::after{width:100%}
+.nav-invest{
+  font-family:'Cormorant SC',serif;
+  font-size:9px;letter-spacing:.3em;
+  text-transform:uppercase;
+  color:var(--ink);background:var(--gold);
+  padding:11px 28px;text-decoration:none;
+  transition:all .3s;
+  position:relative;overflow:hidden;
+}
+.nav-invest::before{
+  content:'';position:absolute;
+  top:0;left:-100%;width:100%;height:100%;
+  background:rgba(255,255,255,.15);
+  transition:left .4s ease;
+}
+.nav-invest:hover{background:var(--gold-bright);transform:translateY(-1px)}
+.nav-invest:hover::before{left:100%}
+
+/* ═══════════════════════════════════════════
+   HERO — THEATRICAL CURTAIN REVEAL
+═══════════════════════════════════════════ */
+#hero{
+  position:relative;
+  height:100vh;min-height:700px;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+
+/* Layered atmospheric background */
+.hero-atmo{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 90% 70% at 50% 30%, rgba(201,168,76,.055) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 50% at 15% 85%, rgba(139,26,26,.12) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 40% at 85% 10%, rgba(80,55,10,.1) 0%, transparent 55%),
+    linear-gradient(180deg,
+      #000 0%,
+      #040200 25%,
+      #080500 50%,
+      #060300 75%,
+      #000 100%
+    );
+}
+
+/* Animated spotlight beams */
+.spotlight{
+  position:absolute;top:0;
+  width:1px;
+  transform-origin:top center;
+  pointer-events:none;
+}
+.spotlight::before{
+  content:'';
+  position:absolute;top:0;left:50%;
+  transform:translateX(-50%);
+  width:0;height:100vh;
+  border-left:180px solid transparent;
+  border-right:180px solid transparent;
+  border-top:100vh solid rgba(201,168,76,.022);
+  filter:blur(2px);
+}
+.sp1{left:20%;animation:sp-sway 18s ease-in-out infinite}
+.sp2{left:50%;animation:sp-sway 22s ease-in-out infinite reverse}
+.sp3{left:80%;animation:sp-sway 16s ease-in-out infinite 4s}
+@keyframes sp-sway{
+  0%,100%{transform:rotate(-3deg)}
+  50%{transform:rotate(3deg)}
+}
+
+/* Stage floor glow */
+.stage-floor{
+  position:absolute;bottom:0;left:0;right:0;height:35%;
+  background:linear-gradient(to top,rgba(201,168,76,.04) 0%,transparent 100%);
+  border-top:1px solid rgba(201,168,76,.06);
+}
+
+/* Hero particles */
+.hero-particles{
+  position:absolute;inset:0;overflow:hidden;pointer-events:none;
+}
+.hp{
+  position:absolute;
+  border-radius:50%;
+  background:var(--gold);
+  animation:hp-rise linear infinite;
+  opacity:0;
+}
+@keyframes hp-rise{
+  0%{transform:translateY(110vh) translateX(0) scale(1);opacity:0}
+  8%{opacity:.7}
+  92%{opacity:.2}
+  100%{transform:translateY(-10vh) translateX(40px) scale(.3);opacity:0}
+}
+
+/* Chinese decorative border frame */
+.hero-frame{
+  position:absolute;inset:40px;
+  border:1px solid rgba(201,168,76,.07);
+  pointer-events:none;
+}
+.hero-frame-inner{
+  position:absolute;inset:12px;
+  border:1px solid rgba(201,168,76,.04);
+}
+.hf-corner{
+  position:absolute;
+  width:24px;height:24px;
+  border-color:rgba(201,168,76,.3);
+  border-style:solid;
+}
+.hf-corner.tl{top:-1px;left:-1px;border-width:2px 0 0 2px}
+.hf-corner.tr{top:-1px;right:-1px;border-width:2px 2px 0 0}
+.hf-corner.bl{bottom:-1px;left:-1px;border-width:0 0 2px 2px}
+.hf-corner.br{bottom:-1px;right:-1px;border-width:0 2px 2px 0}
+
+/* Content */
+.hero-content{
+  position:relative;z-index:10;
+  text-align:center;
+  padding:0 40px;
+  max-width:1000px;
+}
+.hero-pretext{
+  font-family:'Cormorant SC',serif;
+  font-size:10px;letter-spacing:.7em;
+  color:var(--gold-dim);text-transform:uppercase;
+  margin-bottom:40px;
+  display:flex;align-items:center;justify-content:center;gap:20px;
+  opacity:0;animation:h-fade-up .8s .2s forwards;
+}
+.hero-pretext::before,.hero-pretext::after{
+  content:'';display:block;
+  width:40px;height:1px;
+  background:linear-gradient(to right,transparent,var(--gold-dim));
+}
+.hero-pretext::after{
+  background:linear-gradient(to left,transparent,var(--gold-dim));
+}
+
+/* Main title — split line dramatic treatment */
+.hero-title-wrap{
+  margin-bottom:24px;
+  opacity:0;animation:h-fade-up .9s .45s forwards;
+}
+.hero-title-chinese{
+  font-family:'IM Fell English',serif;
+  font-size:clamp(11px,1.2vw,14px);
+  letter-spacing:.6em;
+  color:rgba(201,168,76,.35);
+  text-transform:uppercase;
+  margin-bottom:8px;
+  font-style:italic;
+}
+.hero-title-main{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(56px,10vw,128px);
+  font-weight:900;
+  line-height:.92;
+  color:var(--gold);
+  text-shadow:
+    0 0 120px rgba(201,168,76,.25),
+    0 0 40px rgba(201,168,76,.12),
+    0 2px 0 rgba(0,0,0,.8);
+  letter-spacing:.02em;
+}
+.hero-title-main em{
+  font-style:italic;
+  font-weight:400;
+  color:var(--gold-bright);
+}
+.hero-sub{
+  font-family:'Cormorant SC',serif;
+  font-size:clamp(10px,1.4vw,14px);
+  letter-spacing:.55em;
+  color:var(--gold-pale);
+  text-transform:uppercase;
+  margin-top:16px;
+  font-weight:300;
+}
+.hero-rule{
+  display:flex;align-items:center;justify-content:center;gap:16px;
+  margin:40px auto;
+  opacity:0;animation:h-fade-up .8s .7s forwards;
+}
+.hero-rule-line{
+  width:80px;height:1px;
+  background:linear-gradient(to right,transparent,rgba(201,168,76,.4));
+}
+.hero-rule-line.r{
+  background:linear-gradient(to left,transparent,rgba(201,168,76,.4));
+}
+.hero-rule-diamond{
+  width:6px;height:6px;
+  background:var(--gold);
+  transform:rotate(45deg);
+}
+.hero-logoline{
+  font-family:'IM Fell English',serif;
+  font-style:italic;
+  font-size:clamp(16px,1.8vw,22px);
+  color:rgba(242,228,190,.6);
+  letter-spacing:.03em;
+  line-height:1.7;
+  max-width:580px;
+  margin:0 auto 52px;
+  opacity:0;animation:h-fade-up .8s .85s forwards;
+}
+.hero-cta-row{
+  display:flex;align-items:center;justify-content:center;gap:20px;
+  flex-wrap:wrap;
+  opacity:0;animation:h-fade-up .8s 1.05s forwards;
+}
+.cta-main{
+  font-family:'Cormorant SC',serif;
+  font-size:10px;letter-spacing:.35em;
+  text-transform:uppercase;
+  color:var(--ink);
+  background:linear-gradient(135deg, var(--gold-bright) 0%, var(--gold) 60%, #A8822A 100%);
+  padding:16px 44px;
+  text-decoration:none;
+  transition:all .35s;
+  box-shadow:0 4px 40px rgba(201,168,76,.25),0 1px 0 rgba(255,255,255,.1) inset;
+  position:relative;overflow:hidden;
+}
+.cta-main::after{
+  content:'';position:absolute;
+  top:0;left:0;right:0;height:1px;
+  background:rgba(255,255,255,.25);
+}
+.cta-main:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 60px rgba(201,168,76,.4);
+}
+.cta-outline{
+  font-family:'Cormorant SC',serif;
+  font-size:10px;letter-spacing:.35em;
+  text-transform:uppercase;
+  color:var(--gold);
+  border:1px solid rgba(201,168,76,.35);
+  padding:16px 44px;
+  text-decoration:none;
+  transition:all .35s;
+  backdrop-filter:blur(10px);
+}
+.cta-outline:hover{
+  border-color:var(--gold);
+  background:rgba(201,168,76,.07);
+  color:var(--gold-bright);
+}
+
+/* Hero scroll prompt */
+.hero-scroll{
+  position:absolute;bottom:36px;left:50%;
+  transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  opacity:0;animation:h-fade-up .6s 1.5s forwards;
+}
+.hero-scroll span{
+  font-family:'Cormorant SC',serif;
+  font-size:8px;letter-spacing:.5em;
+  color:var(--gold-dim);text-transform:uppercase;
+}
+.scroll-track{
+  width:1px;height:56px;
+  background:linear-gradient(to bottom,var(--gold-dim),transparent);
+  position:relative;overflow:hidden;
+}
+.scroll-track::after{
+  content:'';
+  position:absolute;top:0;width:100%;height:40%;
+  background:var(--gold-bright);
+  animation:scroll-drop 2.2s ease-in-out infinite;
+}
+@keyframes scroll-drop{
+  0%{top:-40%;opacity:1}
+  100%{top:140%;opacity:0}
+}
+
+@keyframes h-fade-up{
+  from{opacity:0;transform:translateY(28px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* ═══════════════════════════════════════════
+   SECTION BASE
+═══════════════════════════════════════════ */
+.wrap{max-width:1240px;margin:0 auto;padding:0 64px}
+.section-eyebrow{
+  display:flex;align-items:center;gap:18px;
+  font-family:'Cormorant SC',serif;
+  font-size:9.5px;letter-spacing:.55em;
+  color:var(--gold-dim);text-transform:uppercase;
+  margin-bottom:20px;
+}
+.section-eyebrow::before{
+  content:'';display:block;
+  width:28px;height:1px;
+  background:var(--gold-dim);flex-shrink:0;
+}
+.section-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(32px,5vw,64px);
+  font-weight:900;
+  color:var(--gold);
+  line-height:1.05;
+  letter-spacing:-.01em;
+}
+.section-title em{font-style:italic;font-weight:400}
+.section-body{
+  font-family:'Cormorant',serif;
+  font-size:clamp(17px,1.6vw,20px);
+  line-height:1.9;
+  color:var(--text-body);
+  font-weight:400;
+}
+.ornament{
+  display:flex;align-items:center;gap:14px;
+  margin:28px 0;
+}
+.ornament-line{
+  height:1px;width:50px;
+  background:linear-gradient(to right,var(--gold-dim),transparent);
+}
+.ornament-center{
+  font-family:'Cormorant SC',serif;
+  font-size:9px;letter-spacing:.3em;
+  color:var(--gold-dim);
+}
+
+/* REVEAL */
+.r{
+  opacity:0;transform:translateY(36px);
+  transition:opacity .85s cubic-bezier(.16,1,.3,1),
+             transform .85s cubic-bezier(.16,1,.3,1);
+}
+.r.d1{transition-delay:.12s}
+.r.d2{transition-delay:.24s}
+.r.d3{transition-delay:.36s}
+.r.d4{transition-delay:.48s}
+.r.d5{transition-delay:.6s}
+.r.in{opacity:1;transform:translateY(0)}
+
+/* ═══════════════════════════════════════════
+   MARQUEE STATS BAR
+═══════════════════════════════════════════ */
+#statsbar{
+  background:rgba(201,168,76,.07);
+  border-top:1px solid rgba(201,168,76,.18);
+  border-bottom:1px solid rgba(201,168,76,.18);
+  padding:0;overflow:hidden;
+}
+.marquee-track{
+  display:flex;white-space:nowrap;
+  animation:marquee-scroll 30s linear infinite;
+}
+.marquee-item{
+  display:inline-flex;align-items:center;gap:48px;
+  padding:20px 60px;
+  flex-shrink:0;
+}
+.mi-num{
+  font-family:'Playfair Display',serif;
+  font-size:22px;font-weight:700;
+  color:var(--gold);
+}
+.mi-label{
+  font-family:'Cormorant SC',serif;
+  font-size:8.5px;letter-spacing:.4em;
+  color:var(--gold-dim);text-transform:uppercase;
+}
+.marquee-sep{
+  display:inline-block;
+  width:5px;height:5px;
+  background:var(--gold-dim);
+  transform:rotate(45deg);
+  flex-shrink:0;
+  opacity:.4;
+}
+@keyframes marquee-scroll{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-50%)}
+}
+
+/* ═══════════════════════════════════════════
+   ACT I — THE LEGEND
+═══════════════════════════════════════════ */
+#legend{
+  padding:160px 0;
+  background:linear-gradient(180deg,
+    var(--ink) 0%,
+    var(--ink-warm) 40%,
+    var(--ink-mid) 60%,
+    var(--ink-warm) 80%,
+    var(--ink) 100%
+  );
+  position:relative;
+}
+#legend::before{
+  content:'西遊記';
+  position:absolute;
+  right:-40px;top:50%;
+  transform:translateY(-50%) rotate(90deg);
+  font-family:serif;
+  font-size:200px;
+  color:rgba(201,168,76,.025);
+  letter-spacing:.1em;
+  pointer-events:none;
+  white-space:nowrap;
+}
+.legend-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:100px;
+  align-items:center;
+}
+.legend-art{
+  position:relative;
+}
+/* Theatrical proscenium SVG art piece */
+.proscenium{
+  width:100%;
+  aspect-ratio:4/3;
+  position:relative;
+  overflow:hidden;
+}
+.legend-caption{
+  margin-top:16px;
+  font-family:'Cormorant SC',serif;
+  font-size:8.5px;letter-spacing:.4em;
+  color:var(--gold-dim);text-align:center;
+  text-transform:uppercase;
+}
+.legend-year-badge{
+  position:absolute;
+  top:-20px;right:-20px;
+  width:90px;height:90px;
+  border-radius:50%;
+  border:1px solid var(--gold);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  background:var(--ink);
+  z-index:5;
+}
+.lyb-num{
+  font-family:'Playfair Display',serif;
+  font-size:20px;font-weight:900;
+  color:var(--gold);line-height:1;
+}
+.lyb-text{
+  font-family:'Cormorant SC',serif;
+  font-size:7px;letter-spacing:.3em;
+  color:var(--gold-dim);text-transform:uppercase;
+  text-align:center;margin-top:2px;
+}
+.legend-text .section-body{margin-top:24px}
+.legend-text blockquote{
+  border-left:2px solid var(--gold-dim);
+  padding-left:24px;
+  margin:32px 0;
+  font-family:'IM Fell English',serif;
+  font-style:italic;
+  font-size:clamp(18px,1.8vw,22px);
+  color:var(--gold-pale);
+  line-height:1.7;
+}
+.legend-text blockquote cite{
+  display:block;margin-top:12px;
+  font-family:'Cormorant SC',serif;
+  font-size:9px;letter-spacing:.3em;
+  color:var(--gold-dim);
+  font-style:normal;
+}
+
+/* ═══════════════════════════════════════════
+   ACT II — CREATIVE VISION
+═══════════════════════════════════════════ */
+#vision{
+  padding:0 0 160px;
+  background:var(--ink);
+}
+
+/* Full-bleed cinematic band */
+.vision-banner{
+  width:100%;
+  padding:100px 0;
+  background:
+    linear-gradient(180deg,var(--ink) 0%, transparent 20%, transparent 80%, var(--ink) 100%),
+    radial-gradient(ellipse 80% 70% at 50% 50%, rgba(201,168,76,.05) 0%, transparent 70%),
+    linear-gradient(135deg, #050300 0%, #0D0900 50%, #060400 100%);
+  border-top:1px solid rgba(201,168,76,.08);
+  border-bottom:1px solid rgba(201,168,76,.08);
+  margin-bottom:100px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.vision-banner::before{
+  content:'';
+  position:absolute;inset:0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 120px,
+      rgba(201,168,76,.012) 120px,
+      rgba(201,168,76,.012) 121px
+    );
+}
+.vision-banner-inner{
+  position:relative;z-index:2;
+  max-width:900px;margin:0 auto;padding:0 40px;
+}
+.vision-banner .section-eyebrow{justify-content:center}
+.vision-banner .section-eyebrow::before{display:none}
+.vision-banner-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(28px,4.5vw,58px);
+  font-weight:400;
+  font-style:italic;
+  color:var(--gold-pale);
+  line-height:1.2;
+  margin:20px 0 32px;
+  letter-spacing:.02em;
+}
+.vision-banner-body{
+  font-family:'Cormorant',serif;
+  font-size:clamp(17px,1.7vw,21px);
+  line-height:1.95;
+  color:var(--text-body);
+  max-width:680px;margin:0 auto;
+}
+
+/* Features grid */
+.features-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1px;
+  background:rgba(201,168,76,.08);
+  border:1px solid rgba(201,168,76,.08);
+}
+.feature{
+  background:var(--ink-warm);
+  padding:48px 36px;
+  transition:background .4s;
+  position:relative;
+  overflow:hidden;
+}
+.feature::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(to right,transparent,var(--gold-dim),transparent);
+  opacity:0;transition:opacity .4s;
+}
+.feature:hover{background:rgba(201,168,76,.04)}
+.feature:hover::before{opacity:1}
+.feature-num{
+  font-family:'Playfair Display',serif;
+  font-size:52px;font-weight:900;
+  color:rgba(201,168,76,.07);
+  line-height:1;
+  position:absolute;
+  top:20px;right:24px;
+}
+.feature-icon{
+  font-size:28px;
+  margin-bottom:20px;
+  display:block;
+}
+.feature h3{
+  font-family:'Cormorant SC',serif;
+  font-size:11px;letter-spacing:.3em;
+  color:var(--gold);text-transform:uppercase;
+  margin-bottom:14px;font-weight:500;
+}
+.feature p{
+  font-family:'Cormorant',serif;
+  font-size:15.5px;line-height:1.8;
+  color:rgba(242,228,190,.55);
+}
+
+/* ═══════════════════════════════════════════
+   ACT III — THE STARS
+═══════════════════════════════════════════ */
+#stars{
+  padding:160px 0;
+  background:linear-gradient(180deg,
+    var(--ink) 0%,
+    #080500 50%,
+    var(--ink) 100%
+  );
+  position:relative;
+}
+.stars-header{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:80px;
+  align-items:end;
+  margin-bottom:80px;
+}
+.stars-header-cta{
+  text-align:right;
+  padding-bottom:6px;
+}
+.stars-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:2px;
+  background:rgba(201,168,76,.06);
+}
+.star-card{
+  background:var(--ink-warm);
+  padding:60px 56px;
+  position:relative;
+  overflow:hidden;
+  transition:background .5s;
+}
+.star-card:hover{background:rgba(201,168,76,.04)}
+.star-card::after{
+  content:'';
+  position:absolute;
+  top:0;right:0;
+  width:120px;height:120px;
+  background:radial-gradient(circle,rgba(201,168,76,.06) 0%,transparent 70%);
+  pointer-events:none;
+}
+.star-card-badge{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:'Cormorant SC',serif;
+  font-size:9px;letter-spacing:.4em;
+  color:var(--gold-dim);text-transform:uppercase;
+  padding:7px 14px;
+  border:1px solid rgba(201,168,76,.2);
+  margin-bottom:28px;
+}
+.star-card-name{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(28px,3.5vw,44px);
+  font-weight:900;
+  color:var(--gold);
+  line-height:1.1;
+  margin-bottom:8px;
+}
+.star-card-role{
+  font-family:'IM Fell English',serif;
+  font-style:italic;
+  font-size:18px;
+  color:rgba(201,168,76,.5);
+  margin-bottom:28px;
+}
+.star-card p{
+  font-family:'Cormorant',serif;
+  font-size:17px;line-height:1.85;
+  color:var(--text-body);
+}
+.govt-strip{
+  margin-top:2px;
+  background:rgba(201,168,76,.04);
+  border:1px solid rgba(201,168,76,.1);
+  border-top:none;
+  padding:48px 56px;
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:48px;
+  align-items:center;
+}
+.govt-icon{
+  width:64px;height:64px;
+  border:1px solid rgba(201,168,76,.3);
+  display:flex;align-items:center;justify-content:center;
+  font-size:26px;flex-shrink:0;
+  color:var(--gold);
+}
+.govt-text h4{
+  font-family:'Cormorant SC',serif;
+  font-size:9px;letter-spacing:.45em;
+  color:var(--gold-dim);text-transform:uppercase;
+  margin-bottom:10px;
+}
+.govt-text p{
+  font-family:'Cormorant',serif;
+  font-size:17px;line-height:1.75;
+  color:var(--text-body);
+}
+
+/* ═══════════════════════════════════════════
+   INSURANCE RIBBON
+═══════════════════════════════════════════ */
+#shield{
+  padding:0;
+  background:
+    linear-gradient(90deg,
+      rgba(139,26,26,.06) 0%,
+      rgba(201,168,76,.08) 30%,
+      rgba(201,168,76,.1) 50%,
+      rgba(201,168,76,.08) 70%,
+      rgba(139,26,26,.06) 100%
+    );
+  border-top:1px solid rgba(201,168,76,.2);
+  border-bottom:1px solid rgba(201,168,76,.2);
+}
+.shield-inner{
+  max-width:1240px;margin:0 auto;padding:64px;
+  display:grid;
+  grid-template-columns:80px 1fr auto;
+  gap:56px;align-items:center;
+}
+.shield-emblem{
+  width:80px;height:80px;
+  border:1px solid var(--gold);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:4px;
+  flex-shrink:0;
+  position:relative;
+}
+.shield-emblem::before{
+  content:'';
+  position:absolute;inset:4px;
+  border:1px solid rgba(201,168,76,.3);
+}
+.shield-emblem span{font-size:28px;color:var(--gold)}
+.shield-body h3{
+  font-family:'Cormorant SC',serif;
+  font-size:10px;letter-spacing:.45em;
+  color:var(--gold-dim);text-transform:uppercase;
+  margin-bottom:12px;
+}
+.shield-body p{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(18px,2.2vw,26px);
+  font-style:italic;
+  color:var(--gold-pale);
+  line-height:1.5;
+}
+.shield-body strong{color:var(--gold);font-style:normal}
+
+/* ═══════════════════════════════════════════
+   ACT IV — INVESTMENT
+═══════════════════════════════════════════ */
+#investment{
+  padding:160px 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 50%, rgba(201,168,76,.04) 0%, transparent 70%),
+    linear-gradient(180deg, var(--ink) 0%, #080600 50%, var(--ink) 100%);
+  position:relative;
+}
+.investment-grid{
+  display:grid;
+  grid-template-columns:1.1fr 1fr;
+  gap:80px;
+  align-items:start;
+}
+
+/* ROI Table */
+.roi-wrap{margin-top:40px}
+.roi-table{
+  width:100%;
+  border-collapse:collapse;
+}
+.roi-table thead tr{
+  border-bottom:1px solid rgba(201,168,76,.25);
+}
+.roi-table th{
+  font-family:'Cormorant SC',serif;
+  font-size:9px;letter-spacing:.4em;
+  color:var(--gold-dim);text-transform:uppercase;
+  padding:12px 16px;text-align:left;
+  font-weight:400;
+}
+.roi-table tbody tr{
+  border-bottom:1px solid rgba(201,168,76,.06);
+  transition:background .25s;
+}
+.roi-table tbody tr:hover{background:rgba(201,168,76,.04)}
+.roi-table td{
+  font-family:'Cormorant',serif;
+  font-size:17px;
+  padding:18px 16px;
+  color:var(--text-body);
+  font-weight:300;
+}
+.roi-occ{
+  font-family:'Playfair Display',serif;
+  font-size:16px;font-weight:700;
+  color:var(--gold);
+}
+.roi-profit{
+  font-family:'Playfair Display',serif;
+  font-size:17px;font-weight:700;
+  color:var(--gold-bright);
+}
+.roi-be td{opacity:.5}
+.roi-be td:first-child .roi-occ{
+  font-family:'Cormorant SC',serif;
+  font-size:10px;letter-spacing:.2em;
+  color:var(--gold-dim);
+}
+.roi-note{
+  margin-top:14px;
+  font-family:'Cormorant SC',serif;
+  font-size:8.5px;letter-spacing:.25em;
+  color:var(--gold-dim);text-transform:uppercase;
+  line-height:1.7;
+  border-top:1px solid rgba(201,168,76,.08);
+  padding-top:14px;
+}
+
+/* Investment facts */
+.inv-facts{
+  display:flex;flex-direction:column;gap:0;
+  margin-top:40px;
+}
+.inv-fact{
+  padding:32px 0;
+  border-bottom:1px solid rgba(201,168,76,.08);
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:24px;
+  align-items:start;
+}
+.inv-fact:last-child{border-bottom:none}
+.inv-fact-num{
+  font-family:'Playfair Display',serif;
+  font-size:34px;font-weight:900;
+  color:var(--gold);
+  line-height:1;
+  white-space:nowrap;
+}
+.inv-fact-text h4{
+  font-family:'Cormorant SC',serif;
+  font-size:9px;letter-spacing:.4em;
+  color:var(--gold-dim);text-transform:uppercase;
+  margin-bottom:8px;font-weight:400;
+}
+.inv-fact-text p{
+  font-family:'Cormorant',serif;
+  font-size:16px;line-height:1.75;
+  color:rgba(242,228,190,.5);
+}
+
+/* Revenue streams */
+.rev-streams{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1px;
+  background:rgba(201,168,76,.06);
+  margin-top:40px;
+}
+.rev-item{
+  background:var(--ink-warm);
+  padding:24px 28px;
+  transition:background .3s;
+}
+.rev-item:hover{background:rgba(201,168,76,.05)}
+.rev-item h4{
+  font-family:'Cormorant SC',serif;
+  font-size:9.5px;letter-spacing:.3em;
+  color:var(--gold);text-transform:uppercase;
+  margin-bottom:6px;
+}
+.rev-item p{
+  font-family:'Cormorant',serif;
+  font-size:15px;color:rgba(242,228,190,.5);line-height:1.6;
+}
+
+/* ═══════════════════════════════════════════
+   STAGE VISUALS — WORLD
+═══════════════════════════════════════════ */
+#world{
+  padding:160px 0;
+  background:var(--ink);
+}
+.world-intro{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:100px;
+  margin-bottom:80px;
+  align-items:end;
+}
+/* Cinematic film-strip style gallery */
+.gallery{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  grid-template-rows:auto auto;
+  gap:4px;
+}
+.gal-item{
+  position:relative;overflow:hidden;
+  background:var(--ink-mid);
+  cursor:pointer;
+}
+.gal-item:first-child{
+  grid-row:span 2;
+  min-height:480px;
+}
+.gal-item:not(:first-child){min-height:232px}
+.gal-bg{
+  position:absolute;inset:0;
+  transition:transform .7s cubic-bezier(.16,1,.3,1);
+}
+.gal-item:hover .gal-bg{transform:scale(1.06)}
+.gal-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 50%);
+  opacity:0;transition:opacity .4s;
+}
+.gal-item:hover .gal-overlay{opacity:1}
+.gal-label{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:20px 24px;
+  font-family:'Cormorant SC',serif;
+  font-size:8px;letter-spacing:.35em;
+  color:rgba(201,168,76,.8);text-transform:uppercase;
+  transform:translateY(8px);opacity:0;
+  transition:all .4s;
+}
+.gal-item:hover .gal-label{transform:translateY(0);opacity:1}
+
+/* SVG scene backgrounds */
+.gb1{background:linear-gradient(135deg,#040A1C 0%,#081530 50%,#030810 100%)}
+.gb2{background:linear-gradient(135deg,#0A0500 0%,#180C00 50%,#080300 100%)}
+.gb3{background:linear-gradient(135deg,#050018 0%,#0C0030 50%,#030010 100%)}
+.gb4{background:linear-gradient(135deg,#001010 0%,#002020 50%,#000A08 100%)}
+.gb5{background:linear-gradient(135deg,#120800 0%,#200E00 50%,#0A0400 100%)}
+
+/* ═══════════════════════════════════════════
+   ACT V — TOURING
+═══════════════════════════════════════════ */
+#touring{
+  padding:160px 0;
+  background:linear-gradient(180deg,var(--ink) 0%,var(--ink-warm) 50%,var(--ink) 100%);
+}
+.touring-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:80px;
+  align-items:start;
+}
+.tour-list{margin-top:40px}
+.tour-entry{
+  display:flex;align-items:stretch;
+  border-bottom:1px solid rgba(201,168,76,.08);
+  transition:background .25s,padding-left .3s;
+  cursor:default;
+}
+.tour-entry:hover{
+  background:rgba(201,168,76,.025);
+  padding-left:8px;
+}
+.tour-entry:first-child{border-top:1px solid rgba(201,168,76,.08)}
+.te-index{
+  font-family:'Playfair Display',serif;
+  font-size:11px;font-weight:400;
+  color:rgba(201,168,76,.25);
+  padding:22px 20px 22px 0;
+  width:36px;flex-shrink:0;
+  display:flex;align-items:center;
+}
+.te-dot{
+  width:4px;height:4px;
+  border-radius:50%;background:var(--gold);
+  margin:0 16px;flex-shrink:0;
+  align-self:center;
+}
+.te-name{
+  font-family:'Cormorant',serif;
+  font-size:17px;color:var(--gold-pale);
+  padding:22px 0;flex:1;
+  display:flex;align-items:center;
+}
+.te-tag{
+  font-family:'Cormorant SC',serif;
+  font-size:8px;letter-spacing:.3em;
+  color:var(--gold-dim);text-transform:uppercase;
+  padding:22px 0 22px 16px;
+  display:flex;align-items:center;
+  flex-shrink:0;
+}
+
+/* Franchise */
+.franchise-header{
+  padding:40px 0 32px;
+}
+.franchise-items{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:2px;
+  background:rgba(201,168,76,.06);
+}
+.fi{
+  background:var(--ink-warm);
+  padding:28px 30px;
+  transition:background .3s;
+}
+.fi:hover{background:rgba(201,168,76,.05)}
+.fi h4{
+  font-family:'Cormorant SC',serif;
+  font-size:9px;letter-spacing:.35em;
+  color:var(--gold);text-transform:uppercase;
+  margin-bottom:10px;
+}
+.fi p{
+  font-family:'Cormorant',serif;
+  font-size:15.5px;line-height:1.75;
+  color:rgba(242,228,190,.5);
+}
+
+/* ═══════════════════════════════════════════
+   ACT VI — PRODUCERS
+═══════════════════════════════════════════ */
+#producers{
+  padding:160px 0;
+  background:var(--ink);
+}
+.producers-grid{
+  display:grid;
+  grid-template-columns:1fr 1.15fr;
+  gap:80px;
+  align-items:start;
+}
+.prod-quote{
+  font-family:'IM Fell English',serif;
+  font-style:italic;
+  font-size:clamp(22px,2.5vw,30px);
+  color:var(--gold-pale);
+  line-height:1.55;
+  margin:40px 0 32px;
+  border-left:2px solid var(--gold-dim);
+  padding-left:28px;
+}
+.prod-stats-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:2px;
+  background:rgba(201,168,76,.07);
+  margin-top:40px;
+}
+.ps{
+  background:var(--ink-warm);
+  padding:32px 28px;text-align:center;
+  transition:background .3s;
+}
+.ps:hover{background:rgba(201,168,76,.05)}
+.ps-num{
+  font-family:'Playfair Display',serif;
+  font-size:28px;font-weight:900;
+  color:var(--gold);margin-bottom:6px;
+}
+.ps-label{
+  font-family:'Cormorant SC',serif;
+  font-size:8px;letter-spacing:.35em;
+  color:var(--gold-dim);text-transform:uppercase;
+}
+.prod-legacy{
+  margin-top:40px;
+  padding:40px;
+  border:1px solid rgba(201,168,76,.1);
+  background:rgba(201,168,76,.02);
+  position:relative;
+}
+.prod-legacy::before{
+  content:'"';
+  position:absolute;top:-20px;left:30px;
+  font-family:'Playfair Display',serif;
+  font-size:80px;color:rgba(201,168,76,.12);
+  line-height:1;
+}
+.prod-legacy .section-eyebrow{margin-bottom:16px}
+.prod-legacy p{
+  font-family:'Cormorant',serif;
+  font-size:16.5px;line-height:1.85;
+  color:var(--text-body);
+}
+
+.productions-roll{
+  margin-top:32px;
+  padding:32px;
+  border:1px solid rgba(201,168,76,.08);
+  background:var(--ink-warm);
+}
+.pr-heading{
+  font-family:'Cormorant SC',serif;
+  font-size:9px;letter-spacing:.45em;
+  color:var(--gold-dim);text-transform:uppercase;
+  margin-bottom:20px;
+}
+.pr-tags{
+  display:flex;flex-wrap:wrap;gap:10px;
+}
+.pr-tag{
+  font-family:'IM Fell English',serif;
+  font-style:italic;
+  font-size:15px;
+  color:rgba(242,228,190,.45);
+  padding:5px 14px;
+  border:1px solid rgba(201,168,76,.1);
+  transition:all .3s;cursor:default;
+}
+.pr-tag:hover{
+  color:var(--gold-pale);
+  border-color:rgba(201,168,76,.3);
+  background:rgba(201,168,76,.04);
+}
+
+/* ═══════════════════════════════════════════
+   CHARITABLE INTERLUDE
+═══════════════════════════════════════════ */
+#giving{
+  padding:120px 0;
+  background:
+    linear-gradient(90deg,
+      rgba(201,168,76,.055) 0%,
+      rgba(201,168,76,.03) 50%,
+      rgba(201,168,76,.055) 100%
+    );
+  border-top:1px solid rgba(201,168,76,.15);
+  border-bottom:1px solid rgba(201,168,76,.15);
+  text-align:center;
+}
+.giving-inner{
+  max-width:720px;margin:0 auto;padding:0 40px;
+}
+.giving-inner .section-eyebrow{justify-content:center}
+.giving-inner .section-eyebrow::before{display:none}
+.giving-inner .section-title{font-size:clamp(26px,4vw,52px);margin:16px 0 28px}
+.giving-inner .section-body{max-width:560px;margin:0 auto}
+
+/* ═══════════════════════════════════════════
+   CONTACT / INVEST CTA
+═══════════════════════════════════════════ */
+#invest{
+  padding:200px 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 50%, rgba(201,168,76,.055) 0%, transparent 70%),
+    var(--ink);
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+#invest::before{
+  content:'INVEST';
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  font-family:'Playfair Display',serif;
+  font-size:280px;font-weight:900;
+  color:rgba(201,168,76,.018);
+  white-space:nowrap;
+  pointer-events:none;
+}
+.invest-inner{
+  position:relative;z-index:2;
+  max-width:900px;margin:0 auto;padding:0 40px;
+}
+.invest-inner .section-eyebrow{justify-content:center}
+.invest-inner .section-eyebrow::before{display:none}
+.invest-inner .section-title{font-size:clamp(36px,7vw,88px);margin:20px 0}
+.invest-inner .section-body{
+  max-width:620px;margin:0 auto 64px;
+  text-align:center;
+}
+.contact-trio{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:2px;
+  max-width:700px;
+  margin:0 auto 64px;
+  background:rgba(201,168,76,.06);
+}
+.ct-card{
+  background:var(--ink-warm);
+  padding:32px 24px;
+  text-align:center;
+  text-decoration:none;
+  display:block;
+  transition:background .3s;
+}
+.ct-card:hover{background:rgba(201,168,76,.06)}
+.ct-label{
+  font-family:'Cormorant SC',serif;
+  font-size:8.5px;letter-spacing:.4em;
+  color:var(--gold-dim);text-transform:uppercase;
+  margin-bottom:10px;
+}
+.ct-val{
+  font-family:'IM Fell English',serif;
+  font-style:italic;
+  font-size:16px;
+  color:var(--gold-pale);
+  line-height:1.4;
+}
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer{
+  background:var(--ink);
+  border-top:1px solid rgba(201,168,76,.1);
+  padding:48px 64px;
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  gap:20px;
+}
+.footer-left{
+  font-family:'Cormorant SC',serif;
+  font-size:8.5px;letter-spacing:.35em;
+  color:rgba(201,168,76,.25);text-transform:uppercase;
+}
+.footer-center{
+  font-family:'Playfair Display',serif;
+  font-size:13px;color:var(--gold-dim);
+  text-align:center;letter-spacing:.08em;
+}
+.footer-center span{
+  display:block;
+  font-family:'Cormorant SC',serif;
+  font-size:7.5px;letter-spacing:.4em;
+  color:rgba(201,168,76,.2);text-transform:uppercase;
+  margin-top:5px;
+}
+.footer-right{
+  font-family:'IM Fell English',serif;
+  font-style:italic;
+  font-size:13px;
+  color:rgba(201,168,76,.25);
+  text-align:right;
+}
+
+/* ═══════════════════════════════════════════
+   PRELOADER — THEATRICAL CURTAIN
+═══════════════════════════════════════════ */
+#preloader{
+  position:fixed;inset:0;
+  z-index:99999;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+  pointer-events:all;
+}
+.curtain-left,.curtain-right{
+  position:absolute;top:0;bottom:0;
+  width:51%;
+  background:
+    linear-gradient(90deg,rgba(201,168,76,.03) 0%,transparent 100%),
+    #000;
+  transition:transform 1.4s cubic-bezier(.76,0,.24,1);
+  transition-delay:.6s;
+}
+.curtain-left{
+  left:0;
+  border-right:1px solid rgba(201,168,76,.15);
+  background:
+    repeating-linear-gradient(180deg,transparent,transparent 80px,rgba(201,168,76,.012) 80px,rgba(201,168,76,.012) 81px),
+    linear-gradient(90deg,#080400,#020100);
+}
+.curtain-right{
+  right:0;
+  border-left:1px solid rgba(201,168,76,.15);
+  background:
+    repeating-linear-gradient(180deg,transparent,transparent 80px,rgba(201,168,76,.012) 80px,rgba(201,168,76,.012) 81px),
+    linear-gradient(270deg,#080400,#020100);
+}
+.curtain-left::before{
+  content:'';
+  position:absolute;right:-30px;top:0;bottom:0;width:60px;
+  background:linear-gradient(to right,rgba(201,168,76,.06),transparent);
+}
+.curtain-right::before{
+  content:'';
+  position:absolute;left:-30px;top:0;bottom:0;width:60px;
+  background:linear-gradient(to left,rgba(201,168,76,.06),transparent);
+}
+#preloader.open .curtain-left{transform:translateX(-100%)}
+#preloader.open .curtain-right{transform:translateX(100%)}
+#preloader.done{pointer-events:none}
+
+.pre-center{
+  position:relative;z-index:10;
+  text-align:center;
+  display:flex;flex-direction:column;align-items:center;gap:20px;
+  opacity:1;transition:opacity .4s;
+}
+#preloader.open .pre-center{opacity:0;transition-delay:0s}
+.pre-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(32px,6vw,72px);
+  font-weight:900;
+  color:var(--gold);
+  text-shadow:0 0 60px rgba(201,168,76,.3);
+  line-height:1;
+  opacity:0;
+  animation:pre-title-in .8s .2s cubic-bezier(.16,1,.3,1) forwards;
+}
+.pre-title em{font-style:italic;font-weight:400}
+.pre-sub{
+  font-family:'Cormorant SC',serif;
+  font-size:clamp(9px,1.2vw,12px);
+  letter-spacing:.55em;
+  color:var(--gold-dim);
+  text-transform:uppercase;
+  opacity:0;
+  animation:pre-title-in .6s .5s forwards;
+}
+.pre-loader-bar{
+  width:200px;height:1px;
+  background:rgba(201,168,76,.15);
+  position:relative;overflow:hidden;
+  opacity:0;animation:pre-title-in .4s .7s forwards;
+}
+.pre-loader-fill{
+  position:absolute;top:0;left:0;height:100%;
+  background:var(--gold);
+  animation:pre-fill 1.2s .8s cubic-bezier(.4,0,.2,1) forwards;
+  width:0;
+}
+@keyframes pre-fill{to{width:100%}}
+@keyframes pre-title-in{
+  from{opacity:0;transform:translateY(16px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* ═══════════════════════════════════════════
+   PARALLAX QUOTE BAND
+═══════════════════════════════════════════ */
+#quote-band{
+  padding:140px 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 50%,rgba(201,168,76,.045) 0%,transparent 70%),
+    linear-gradient(180deg,var(--ink) 0%,#0A0700 50%,var(--ink) 100%);
+  text-align:center;
+  position:relative;overflow:hidden;
+}
+#quote-band::before{
+  content:'"';
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-60%);
+  font-family:'Playfair Display',serif;
+  font-size:600px;font-weight:900;
+  color:rgba(201,168,76,.018);
+  line-height:1;
+  pointer-events:none;
+  user-select:none;
+}
+.qb-inner{
+  max-width:880px;margin:0 auto;padding:0 48px;
+  position:relative;z-index:2;
+}
+.qb-rule{
+  width:1px;height:60px;
+  background:linear-gradient(to bottom,transparent,var(--gold-dim),transparent);
+  margin:0 auto 40px;
+}
+.qb-quote{
+  font-family:'Playfair Display',serif;
+  font-style:italic;
+  font-size:clamp(22px,3.5vw,42px);
+  font-weight:400;
+  color:var(--gold-pale);
+  line-height:1.5;
+  letter-spacing:.01em;
+  margin-bottom:40px;
+}
+.qb-quote strong{
+  color:var(--gold);
+  font-style:normal;
+  font-weight:700;
+}
+.qb-attr{
+  font-family:'Cormorant SC',serif;
+  font-size:10px;letter-spacing:.5em;
+  color:var(--gold-dim);text-transform:uppercase;
+}
+
+/* ═══════════════════════════════════════════
+   PRODUCTION TIMELINE
+═══════════════════════════════════════════ */
+#timeline{
+  padding:160px 0;
+  background:var(--ink);
+  position:relative;
+}
+#timeline::before{
+  content:'';
+  position:absolute;
+  left:50%;top:200px;bottom:80px;
+  width:1px;
+  background:linear-gradient(to bottom,
+    transparent 0%,
+    rgba(201,168,76,.2) 10%,
+    rgba(201,168,76,.2) 90%,
+    transparent 100%
+  );
+  transform:translateX(-50%);
+}
+.timeline-header{
+  text-align:center;margin-bottom:100px;
+}
+.timeline-header .section-eyebrow{justify-content:center}
+.timeline-header .section-eyebrow::before{display:none}
+.tl-entries{
+  display:flex;flex-direction:column;
+  gap:0;
+  max-width:1000px;margin:0 auto;
+  position:relative;
+}
+.tl-entry{
+  display:grid;
+  grid-template-columns:1fr 60px 1fr;
+  gap:0;
+  align-items:center;
+  padding:0 0 80px;
+}
+.tl-entry:last-child{padding-bottom:0}
+.tl-content-left{text-align:right;padding-right:48px}
+.tl-content-right{text-align:left;padding-left:48px}
+.tl-empty{display:block}
+.tl-node{
+  width:60px;height:60px;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;flex-shrink:0;
+}
+.tl-dot{
+  width:12px;height:12px;
+  border-radius:50%;
+  background:var(--gold);
+  position:relative;z-index:2;
+  box-shadow:0 0 0 4px rgba(201,168,76,.15),0 0 20px rgba(201,168,76,.3);
+  transition:box-shadow .4s;
+}
+.tl-entry:hover .tl-dot{
+  box-shadow:0 0 0 6px rgba(201,168,76,.2),0 0 30px rgba(201,168,76,.5);
+}
+.tl-phase{
+  font-family:'Cormorant SC',serif;
+  font-size:8.5px;letter-spacing:.5em;
+  color:var(--gold-dim);text-transform:uppercase;
+  margin-bottom:10px;
+}
+.tl-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(18px,2.2vw,26px);
+  font-weight:700;
+  color:var(--gold);
+  margin-bottom:12px;
+  line-height:1.2;
+}
+.tl-body{
+  font-family:'Cormorant',serif;
+  font-size:16px;line-height:1.8;
+  color:rgba(242,228,190,.55);
+}
+.tl-tag{
+  display:inline-block;
+  margin-top:12px;
+  font-family:'Cormorant SC',serif;
+  font-size:8px;letter-spacing:.3em;
+  color:var(--gold-dim);
+  border:1px solid rgba(201,168,76,.2);
+  padding:5px 12px;text-transform:uppercase;
+}
+
+/* ═══════════════════════════════════════════
+   MEDIA & MARKETING PARTNERS
+═══════════════════════════════════════════ */
+#partners{
+  padding:120px 0;
+  background:linear-gradient(180deg,var(--ink) 0%,#080600 50%,var(--ink) 100%);
+  border-top:1px solid rgba(201,168,76,.06);
+}
+.partners-header{
+  text-align:center;margin-bottom:72px;
+}
+.partners-header .section-eyebrow{justify-content:center}
+.partners-header .section-eyebrow::before{display:none}
+
+.partner-row{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:2px;
+  background:rgba(201,168,76,.05);
+  border:1px solid rgba(201,168,76,.07);
+  margin-bottom:40px;
+}
+.partner-card{
+  background:var(--ink-warm);
+  padding:36px 24px;
+  text-align:center;
+  transition:background .3s;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:12px;
+}
+.partner-card:hover{background:rgba(201,168,76,.045)}
+.pc-cat{
+  font-family:'Cormorant SC',serif;
+  font-size:7.5px;letter-spacing:.45em;
+  color:var(--gold-dim);text-transform:uppercase;
+  margin-bottom:4px;
+}
+.pc-name{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(14px,1.8vw,20px);
+  font-weight:700;
+  color:var(--gold-pale);
+  line-height:1.2;
+}
+.pc-role{
+  font-family:'Cormorant',serif;
+  font-size:13px;
+  color:rgba(242,228,190,.4);
+  font-style:italic;
+}
+
+.media-note{
+  text-align:center;
+  max-width:640px;margin:0 auto;
+  font-family:'Cormorant',serif;
+  font-size:17px;line-height:1.85;
+  color:rgba(242,228,190,.5);
+  font-style:italic;
+}
+
+/* ═══════════════════════════════════════════
+   RISK PROFILE SECTION
+═══════════════════════════════════════════ */
+#risk{
+  padding:140px 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 50%,rgba(139,26,26,.04) 0%,transparent 70%),
+    var(--ink);
+}
+.risk-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:2px;
+  background:rgba(201,168,76,.05);
+  border:1px solid rgba(201,168,76,.08);
+  margin-top:60px;
+}
+.risk-card{
+  background:var(--ink-warm);
+  padding:50px 46px;
+  transition:background .4s;
+}
+.risk-card:hover{background:rgba(201,168,76,.035)}
+.risk-card-head{
+  display:flex;align-items:center;gap:16px;
+  margin-bottom:20px;
+}
+.risk-icon{
+  width:40px;height:40px;
+  border:1px solid rgba(201,168,76,.25);
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;
+  color:var(--gold);
+}
+.risk-card h3{
+  font-family:'Cormorant SC',serif;
+  font-size:10px;letter-spacing:.3em;
+  color:var(--gold);text-transform:uppercase;
+}
+.risk-card p{
+  font-family:'Cormorant',serif;
+  font-size:16.5px;line-height:1.85;
+  color:rgba(242,228,190,.6);
+}
+.risk-highlight{
+  grid-column:span 2;
+  background:linear-gradient(135deg,rgba(201,168,76,.08),rgba(201,168,76,.04));
+  border-top:2px solid rgba(201,168,76,.25);
+  padding:50px 56px;
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:40px;align-items:center;
+}
+.rh-stat{text-align:center}
+.rh-num{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(32px,4vw,52px);
+  font-weight:900;color:var(--gold);
+  margin-bottom:8px;
+  line-height:1;
+}
+.rh-label{
+  font-family:'Cormorant SC',serif;
+  font-size:9px;letter-spacing:.4em;
+  color:var(--gold-dim);text-transform:uppercase;
+}
+.rh-divider{
+  width:1px;height:80px;
+  background:rgba(201,168,76,.15);
+  margin:0 auto;
+}
+
+/* ═══════════════════════════════════════════
+   COUNTER ANIMATION NUMBERS
+═══════════════════════════════════════════ */
+.count-num{display:inline-block}
+
+/* ═══════════════════════════════════════════
+   CURSOR GLOW
+═══════════════════════════════════════════ */
+#cursor-glow{
+  position:fixed;
+  width:300px;height:300px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(201,168,76,.04) 0%,transparent 70%);
+  pointer-events:none;
+  z-index:8999;
+  transform:translate(-50%,-50%);
+  transition:opacity .3s;
+  top:0;left:0;
+}
+
+/* ═══════════════════════════════════════════
+   MOBILE NAV TOGGLE
+═══════════════════════════════════════════ */
+.nav-hamburger{
+  display:none;
+  flex-direction:column;gap:5px;
+  cursor:pointer;padding:6px;
+}
+.nav-hamburger span{
+  display:block;width:22px;height:1px;
+  background:var(--gold);
+  transition:all .3s;
+}
+.mobile-menu{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.97);
+  backdrop-filter:blur(20px);
+  z-index:790;
+  flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:36px;
+}
+.mobile-menu.open{display:flex}
+.mobile-menu a{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(24px,5vw,36px);
+  color:var(--gold);
+  text-decoration:none;
+  font-style:italic;
+  transition:color .3s;
+}
+.mobile-menu a:hover{color:var(--gold-bright)}
+.mobile-menu-close{
+  position:absolute;top:32px;right:32px;
+  font-family:'Cormorant SC',serif;
+  font-size:9px;letter-spacing:.4em;
+  color:var(--gold-dim);cursor:pointer;
+  text-transform:uppercase;
+  border:1px solid rgba(201,168,76,.2);
+  padding:10px 16px;
+  transition:all .3s;
+}
+.mobile-menu-close:hover{border-color:var(--gold);color:var(--gold)}
+
+/* ═══════════════════════════════════════════
+   ENHANCED HERO BADGE
+═══════════════════════════════════════════ */
+.hero-insured-badge{
+  display:inline-flex;align-items:center;gap:10px;
+  margin-top:32px;
+  font-family:'Cormorant SC',serif;
+  font-size:8.5px;letter-spacing:.4em;
+  color:var(--gold-dim);text-transform:uppercase;
+  border:1px solid rgba(201,168,76,.15);
+  padding:10px 20px;
+  opacity:0;
+  animation:h-fade-up .7s 1.25s forwards;
+}
+.hero-insured-badge::before{
+  content:'🛡';font-size:14px;
+}
+
+/* ═══════════════════════════════════════════
+   ENHANCED FOOTER
+═══════════════════════════════════════════ */
+.footer-extended{
+  background:var(--ink-warm);
+  border-top:1px solid rgba(201,168,76,.08);
+  padding:80px 64px 0;
+}
+.footer-ext-grid{
+  max-width:1240px;margin:0 auto;
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:60px;padding-bottom:60px;
+  border-bottom:1px solid rgba(201,168,76,.07);
+}
+.fe-brand .nav-brand-top{font-size:15px;margin-bottom:6px;display:block}
+.fe-brand .nav-brand-bottom{font-size:10px;display:block;margin-bottom:20px}
+.fe-brand p{
+  font-family:'Cormorant',serif;
+  font-size:15px;line-height:1.8;
+  color:rgba(242,228,190,.4);
+  max-width:260px;
+  margin-top:16px;
+}
+.fe-col h4{
+  font-family:'Cormorant SC',serif;
+  font-size:9px;letter-spacing:.45em;
+  color:var(--gold-dim);text-transform:uppercase;
+  margin-bottom:20px;
+}
+.fe-col ul{list-style:none}
+.fe-col li{margin-bottom:12px}
+.fe-col a,.fe-col span{
+  font-family:'Cormorant',serif;
+  font-size:16px;
+  color:rgba(242,228,190,.45);
+  text-decoration:none;
+  transition:color .3s;
+  font-style:italic;
+}
+.fe-col a:hover{color:var(--gold-pale)}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media(max-width:1024px){
+  .wrap{padding:0 36px}
+  #nav,#nav.solid{padding:16px 36px}
+  .legend-grid,.investment-grid,
+  .touring-grid,.producers-grid,
+  .world-intro,.stars-header{
+    grid-template-columns:1fr;gap:50px;
+  }
+  .stars-header-cta{text-align:left}
+  .stars-grid{grid-template-columns:1fr}
+  .features-grid{grid-template-columns:1fr 1fr}
+  .gallery{grid-template-columns:1fr 1fr}
+  .gal-item:first-child{grid-row:span 1;min-height:220px}
+  .shield-inner{grid-template-columns:auto 1fr;gap:32px}
+  .shield-inner .cta-main{grid-column:span 2}
+  footer{grid-template-columns:1fr;text-align:center;gap:12px}
+  .footer-right{text-align:center}
+  #invest::before{font-size:120px}
+  #timeline::before{left:32px}
+  .tl-entry{grid-template-columns:0 60px 1fr}
+  .tl-content-left{display:none}
+  .tl-content-right{padding-left:24px}
+  .partner-row{grid-template-columns:repeat(3,1fr)}
+  .risk-grid{grid-template-columns:1fr}
+  .risk-highlight{grid-column:span 1;grid-template-columns:1fr;gap:20px}
+  .rh-divider{width:80px;height:1px}
+  .footer-ext-grid{grid-template-columns:1fr 1fr;gap:40px}
+  .footer-extended{padding:60px 36px 0}
+}
+@media(max-width:640px){
+  .wrap{padding:0 20px}
+  .nav-links,.nav-invest{display:none}
+  .nav-hamburger{display:flex}
+  #nav,#nav.solid{padding:16px 20px}
+  .features-grid,.rev-streams,.franchise-items,.prod-stats-grid,.contact-trio{grid-template-columns:1fr}
+  .gallery{grid-template-columns:1fr}
+  .hero-frame{inset:12px}
+  .partner-row{grid-template-columns:1fr 1fr}
+  .footer-ext-grid{grid-template-columns:1fr}
+  .footer-extended{padding:40px 20px 0}
+  .qb-quote{font-size:20px}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ CURSOR GLOW ═══ -->
+<div id="cursor-glow"></div>
+
+<!-- ═══ PRELOADER ═══ -->
+<div id="preloader">
+  <div class="curtain-left"></div>
+  <div class="curtain-right"></div>
+  <div class="pre-center">
+    <div class="pre-title"><em>Monkey King</em></div>
+    <div class="pre-sub">Journey to the West · A Global Entertainment Investment</div>
+    <div class="pre-loader-bar"><div class="pre-loader-fill"></div></div>
+  </div>
+</div>
+
+<!-- ═══ MOBILE MENU ═══ -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-close" id="menuClose">Close ✕</div>
+  <a href="#vision" class="mob-link">The Vision</a>
+  <a href="#stars" class="mob-link">The Cast</a>
+  <a href="#investment" class="mob-link">Investment</a>
+  <a href="#touring" class="mob-link">World Tour</a>
+  <a href="#producers" class="mob-link">Producers</a>
+  <a href="#invest" class="mob-link">Invest Now</a>
+</div>
+
+<!-- ═══ NAVIGATION ═══ -->
+<nav id="nav">
+  <a href="#" class="nav-brand">
+    <span class="nav-brand-top">Monkey King</span>
+    <span class="nav-brand-bottom">Journey to the West</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#vision">The Vision</a></li>
+    <li><a href="#stars">The Cast</a></li>
+    <li><a href="#investment">Investment</a></li>
+    <li><a href="#touring">World Tour</a></li>
+    <li><a href="#producers">Producers</a></li>
+  </ul>
+  <a href="#invest" class="nav-invest">Become an Investor</a>
+  <div class="nav-hamburger" id="menuOpen">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <div class="hero-atmo"></div>
+  <div class="spotlight sp1"></div>
+  <div class="spotlight sp2"></div>
+  <div class="spotlight sp3"></div>
+  <div class="stage-floor"></div>
+  <div class="hero-particles" id="hpContainer"></div>
+
+  <!-- Decorative frame -->
+  <div class="hero-frame">
+    <div class="hf-corner tl"></div>
+    <div class="hf-corner tr"></div>
+    <div class="hf-corner bl"></div>
+    <div class="hf-corner br"></div>
+    <div class="hero-frame-inner"></div>
+  </div>
+
+  <div class="hero-content">
+    <p class="hero-pretext">A Global Entertainment Investment</p>
+    <div class="hero-title-wrap">
+      <div class="hero-title-chinese">西遊記 &nbsp;·&nbsp; 孫悟空 &nbsp;·&nbsp; The Monkey King</div>
+      <h1 class="hero-title-main"><em>Monkey King</em></h1>
+      <div class="hero-sub">Journey to the West</div>
+    </div>
+    <div class="hero-rule">
+      <div class="hero-rule-line"></div>
+      <div class="hero-rule-diamond"></div>
+      <div class="hero-rule-line r"></div>
+    </div>
+    <p class="hero-logoline">The world's most beloved legend, reborn as a groundbreaking immersive stage production. Join us as founding partners in a new era of global entertainment.</p>
+    <div class="hero-cta-row">
+      <a href="#investment" class="cta-main">View Investment Prospectus</a>
+      <a href="#vision" class="cta-outline">Discover the Vision</a>
+    </div>
+    <div style="text-align:center">
+      <div class="hero-insured-badge">World's First Fully Insured Entertainment Investment · Zero Risk to Capital</div>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-track"></div>
+  </div>
+</section>
+
+<!-- ═══ STATS MARQUEE ═══ -->
+<div id="statsbar">
+  <div class="marquee-track" id="marqueeTrack">
+    <!-- items injected by JS for seamless loop -->
+  </div>
+</div>
+
+<!-- ═══ ACT I: THE LEGEND ═══ -->
+<section id="legend">
+  <div class="wrap">
+    <div class="legend-grid">
+
+      <!-- Theatrical stage art -->
+      <div class="legend-art r">
+        <div class="proscenium">
+          <svg width="100%" height="100%" viewBox="0 0 560 420" xmlns="http://www.w3.org/2000/svg" style="display:block">
+            <defs>
+              <radialGradient id="sg1" cx="50%" cy="35%" r="55%">
+                <stop offset="0%" stop-color="#4A7AB0" stop-opacity=".22"/>
+                <stop offset="100%" stop-color="#030810" stop-opacity="1"/>
+              </radialGradient>
+              <radialGradient id="sg2" cx="50%" cy="80%" r="50%">
+                <stop offset="0%" stop-color="#C9A84C" stop-opacity=".08"/>
+                <stop offset="100%" stop-color="#030810" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="sg3" cx="50%" cy="50%" r="40%">
+                <stop offset="0%" stop-color="#8B3A1A" stop-opacity=".1"/>
+                <stop offset="100%" stop-color="transparent"/>
+              </radialGradient>
+              <filter id="sf1" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="5"/>
+              </filter>
+              <filter id="sf2" x="-10%" y="-10%" width="120%" height="120%">
+                <feGaussianBlur stdDeviation="2"/>
+              </filter>
+              <clipPath id="sceneClip">
+                <rect width="560" height="420" rx="0"/>
+              </clipPath>
+            </defs>
+
+            <g clip-path="url(#sceneClip)">
+              <!-- Sky/atmosphere -->
+              <rect width="560" height="420" fill="#030810"/>
+              <rect width="560" height="420" fill="url(#sg1)"/>
+              <rect width="560" height="420" fill="url(#sg2)"/>
+
+              <!-- Distant mountain range -->
+              <polygon points="0,280 40,180 80,230 120,140 170,200 220,100 280,170 330,110 380,160 420,90 470,150 520,120 560,140 560,420 0,420"
+                fill="rgba(8,20,50,.8)"/>
+              <polygon points="0,320 50,230 90,280 140,190 190,250 240,160 290,210 340,160 390,200 440,155 490,195 540,165 560,180 560,420 0,420"
+                fill="rgba(4,12,32,.9)"/>
+              <polygon points="0,360 60,290 110,340 160,270 220,310 280,250 340,290 400,245 450,280 510,250 560,270 560,420 0,420"
+                fill="rgba(2,6,18,.95)"/>
+
+              <!-- Stage ground plane -->
+              <rect x="0" y="360" width="560" height="60" fill="rgba(2,5,15,1)"/>
+              <!-- Reflective floor -->
+              <rect x="0" y="360" width="560" height="3" fill="rgba(201,168,76,.06)"/>
+
+              <!-- Stage steps -->
+              <rect x="190" y="338" width="180" height="9" fill="rgba(201,168,76,.1)" rx="1"/>
+              <rect x="175" y="349" width="210" height="9" fill="rgba(201,168,76,.07)" rx="1"/>
+              <rect x="158" y="360" width="244" height="9" fill="rgba(201,168,76,.05)" rx="1"/>
+
+              <!-- Spotlight beams from above -->
+              <polygon points="180,0 150,360 210,360" fill="rgba(80,120,220,.04)" filter="url(#sf2)"/>
+              <polygon points="280,0 255,360 305,360" fill="rgba(80,140,240,.055)" filter="url(#sf2)"/>
+              <polygon points="380,0 355,360 405,360" fill="rgba(80,120,220,.04)" filter="url(#sf2)"/>
+
+              <!-- Mist layers -->
+              <ellipse cx="280" cy="380" rx="320" ry="55" fill="rgba(80,110,200,.07)" filter="url(#sf1)"/>
+              <ellipse cx="280" cy="355" rx="260" ry="40" fill="rgba(60,90,180,.06)" filter="url(#sf1)"/>
+              <ellipse cx="180" cy="340" rx="120" ry="25" fill="rgba(50,80,160,.05)" filter="url(#sf1)"/>
+              <ellipse cx="390" cy="345" rx="110" ry="22" fill="rgba(50,80,160,.05)" filter="url(#sf1)"/>
+
+              <!-- Central figure — Monkey King silhouette -->
+              <!-- Body -->
+              <ellipse cx="280" cy="318" rx="14" ry="22" fill="rgba(8,15,40,.95)"/>
+              <!-- Head -->
+              <circle cx="280" cy="292" r="12" fill="rgba(8,15,40,.95)"/>
+              <!-- Crown/headband golden -->
+              <rect x="270" y="285" width="20" height="3" rx="1.5" fill="rgba(201,168,76,.6)"/>
+              <!-- Staff raised -->
+              <line x1="294" y1="295" x2="320" y2="250" stroke="rgba(201,168,76,.35)" stroke-width="2.5" stroke-linecap="round"/>
+              <circle cx="320" cy="248" r="4" fill="rgba(201,168,76,.25)"/>
+              <!-- Flowing cape -->
+              <path d="M270 308 Q250 325 260 340 Q270 335 278 320" fill="rgba(6,12,35,.95)"/>
+              <path d="M290 308 Q310 325 300 340 Q290 335 282 320" fill="rgba(6,12,35,.95)"/>
+
+              <!-- Atmospheric golden particles -->
+              <circle cx="120" cy="180" r="1.5" fill="#C9A84C" opacity=".5"/>
+              <circle cx="180" cy="130" r="1" fill="#C9A84C" opacity=".35"/>
+              <circle cx="240" cy="160" r="1.5" fill="#C9A84C" opacity=".4"/>
+              <circle cx="330" cy="140" r="1" fill="#C9A84C" opacity=".45"/>
+              <circle cx="400" cy="170" r="1.5" fill="#C9A84C" opacity=".3"/>
+              <circle cx="450" cy="120" r="1" fill="#C9A84C" opacity=".4"/>
+              <circle cx="500" cy="195" r="1.5" fill="#C9A84C" opacity=".35"/>
+              <circle cx="80" cy="210" r="1" fill="#E8C76A" opacity=".3"/>
+              <circle cx="150" cy="260" r="1.5" fill="#E8C76A" opacity=".2"/>
+              <circle cx="430" cy="240" r="1" fill="#E8C76A" opacity=".25"/>
+
+              <!-- Decorative top arch — proscenium frame suggestion -->
+              <path d="M0,0 L0,80 Q0,0 80,0" fill="none" stroke="rgba(201,168,76,.08)" stroke-width="1"/>
+              <path d="M560,0 L560,80 Q560,0 480,0" fill="none" stroke="rgba(201,168,76,.08)" stroke-width="1"/>
+              <!-- Curtain suggestions -->
+              <rect x="0" y="0" width="30" height="420" fill="rgba(50,10,5,.4)"/>
+              <rect x="530" y="0" width="30" height="420" fill="rgba(50,10,5,.4)"/>
+              <path d="M0 0 Q15 210 0 420" fill="rgba(80,20,10,.2)"/>
+              <path d="M560 0 Q545 210 560 420" fill="rgba(80,20,10,.2)"/>
+
+              <!-- Stars / sky dots -->
+              <circle cx="100" cy="60" r=".8" fill="white" opacity=".2"/>
+              <circle cx="200" cy="40" r=".8" fill="white" opacity=".15"/>
+              <circle cx="350" cy="30" r=".8" fill="white" opacity=".2"/>
+              <circle cx="460" cy="55" r=".8" fill="white" opacity=".15"/>
+              <circle cx="520" cy="80" r=".8" fill="white" opacity=".1"/>
+            </g>
+          </svg>
+        </div>
+        <p class="legend-caption">Concept Production — The Celestial Stage</p>
+        <div class="legend-year-badge">
+          <div class="lyb-num">16th</div>
+          <div class="lyb-text">Century<br/>Classic</div>
+        </div>
+      </div>
+
+      <!-- Text -->
+      <div class="legend-text">
+        <div class="section-eyebrow r d1">The Production</div>
+        <h2 class="section-title r d2">A Legend<br><em>Reborn</em></h2>
+        <div class="ornament r d2">
+          <div class="ornament-line"></div>
+          <div class="ornament-center">· · ·</div>
+        </div>
+        <p class="section-body r d3">Written in the 16th century, <em>Journey to the West</em> is one of the most cherished works in world literature — a mythological epic beloved by billions across China, India, Southeast Asia, and Australia. At its heart is Sun Wukong, the indomitable Monkey King: warrior, trickster, and hero.</p>
+        <blockquote class="r d3">
+          "A myth reborn for the digital age. A celebration of collaboration, identity, and global storytelling."
+          <cite>— Kerry Jewel, Producer & Creator</cite>
+        </blockquote>
+        <p class="section-body r d4">Now, for the first time, this legendary story will be brought to life as a US$15 million immersive stage production — fusing animatronics, acrobatics, digital projection, and original music in a groundbreaking theatrical experience designed for global audiences.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ACT II: CREATIVE VISION ═══ -->
+<section id="vision">
+  <div class="vision-banner">
+    <div class="vision-banner-inner">
+      <div class="section-eyebrow r" style="justify-content:center">Creative Vision</div>
+      <h2 class="vision-banner-title r d1">"This is not traditional theatre.<br>This is a live-action, immersive world."</h2>
+      <p class="vision-banner-body r d2">Featuring immersive digital environments, animatronic and practical effects, original composition and choreography, and an international cast — Monkey King redefines what a stage production can be.</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="features-grid">
+      <div class="feature r">
+        <div class="feature-num">01</div>
+        <span class="feature-icon">🎭</span>
+        <h3>Immersive Worlds</h3>
+        <p>Full-scale digital projection mapping transforms the stage into the Celestial Kingdom, the Dragon Palace, and the treacherous mountain passes of the West.</p>
+      </div>
+      <div class="feature r d1">
+        <div class="feature-num">02</div>
+        <span class="feature-icon">🐉</span>
+        <h3>Animatronics & Effects</h3>
+        <p>Spectacular practical effects and life-sized animatronic creatures bring the legendary beasts and gods of Chinese mythology to breathtaking physical life.</p>
+      </div>
+      <div class="feature r d2">
+        <div class="feature-num">03</div>
+        <span class="feature-icon">🥋</span>
+        <h3>Acrobatics & Combat</h3>
+        <p>World-class acrobats and martial arts performers embody the supernatural feats of Sun Wukong — defying gravity in sequences that will astonish every audience.</p>
+      </div>
+      <div class="feature r d3">
+        <div class="feature-num">04</div>
+        <span class="feature-icon">🎼</span>
+        <h3>Original Score</h3>
+        <p>A sweeping original composition blending traditional Chinese instrumentation with contemporary orchestration, performed live with high-fidelity spatial sound design.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ACT III: THE STARS ═══ -->
+<section id="stars">
+  <div class="wrap">
+    <div class="stars-header">
+      <div>
+        <div class="section-eyebrow r">The Talent</div>
+        <h2 class="section-title r d1">Global Icons<br><em>On Stage</em></h2>
+      </div>
+      <div class="stars-header-cta r d2">
+        <p class="section-body" style="max-width:380px">Two of the world's most recognised stars lend their voice, presence, and global reach to this landmark production.</p>
+      </div>
+    </div>
+
+    <div class="stars-grid">
+      <div class="star-card r">
+        <div class="star-card-badge">⭐ Prologue Host</div>
+        <div class="star-card-name">Russell Crowe</div>
+        <div class="star-card-role">Academy Award-Winning Actor</div>
+        <p>Global superstar Russell Crowe opens the production as host of the prologue — lending his unrivalled international gravitas and recognition to anchor the show's dramatic narrative arc and draw worldwide attention from press and public alike.</p>
+      </div>
+      <div class="star-card r d1">
+        <div class="star-card-badge">🎬 Narrator</div>
+        <div class="star-card-name">Jackie Chan</div>
+        <div class="star-card-role">Narrator & Creative Collaborator</div>
+        <p>Legendary global icon Jackie Chan serves as the production's narrator and leads the narrative adaptation — ensuring authentic cultural resonance, broad Asian market appeal, and unprecedented media coverage across every territory in the touring schedule.</p>
+      </div>
+    </div>
+
+    <div class="govt-strip r d2">
+      <div class="govt-icon">🏛</div>
+      <div class="govt-text">
+        <h4>Ministry of Culture — People's Republic of China</h4>
+        <p>China's Ministry of Culture has expressed keen support for this production, in alignment with its stated mission to export Chinese cultural heritage to the world. This institutional backing opens extraordinary access to venues, media, and audiences across Mainland China and the broader Chinese diaspora.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ INSURANCE / PROTECTION RIBBON ═══ -->
+<div id="shield">
+  <div class="shield-inner r">
+    <div class="shield-emblem">
+      <span>🛡</span>
+    </div>
+    <div class="shield-body">
+      <h3>World's First Fully Insured Entertainment Investment</h3>
+      <p>All investor capital is <strong>fully protected</strong> by an H2 Entertainment Solutions Cancellation &amp; Abandonment Insurance Policy — guaranteeing a complete return of principal in the event of non-completion or early termination. <strong>Zero risk to investor capital.</strong></p>
+    </div>
+    <a href="#invest" class="cta-main">Invest With Confidence</a>
+  </div>
+</div>
+
+<!-- ═══ ACT IV: INVESTMENT ═══ -->
+<section id="investment">
+  <div class="wrap">
+    <div class="investment-grid">
+
+      <!-- Left: ROI table -->
+      <div>
+        <div class="section-eyebrow r">Financial Returns</div>
+        <h2 class="section-title r d1">Return on<br><em>Investment</em></h2>
+        <p class="section-body r d2" style="margin-top:24px;max-width:520px">Projected across multiple occupancy scenarios, with breakeven at a remarkable 35.3% — far below industry norms. All net profits distributed 60% Investor / 40% Producer.</p>
+
+        <div class="roi-wrap r d2">
+          <table class="roi-table">
+            <thead>
+              <tr>
+                <th>Occupancy</th>
+                <th>Revenue</th>
+                <th>Costs &amp; Royalties</th>
+                <th>Net Profit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="roi-occ">100%</span></td>
+                <td>$154.9M</td>
+                <td>$54.7M</td>
+                <td><span class="roi-profit">$100.2M</span></td>
+              </tr>
+              <tr>
+                <td><span class="roi-occ">80%</span></td>
+                <td>$123.9M</td>
+                <td>$54.7M</td>
+                <td><span class="roi-profit">$69.2M</span></td>
+              </tr>
+              <tr>
+                <td><span class="roi-occ">60%</span></td>
+                <td>$92.9M</td>
+                <td>$54.6M</td>
+                <td><span class="roi-profit">$38.3M</span></td>
+              </tr>
+              <tr>
+                <td><span class="roi-occ">40%</span></td>
+                <td>$61.9M</td>
+                <td>$54.6M</td>
+                <td><span class="roi-profit">$7.4M</span></td>
+              </tr>
+              <tr class="roi-be">
+                <td><span class="roi-occ">Breakeven 35.3%</span></td>
+                <td>$54.7M</td>
+                <td>$54.5M</td>
+                <td>$0.1M</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="roi-note">Ticket sales, group bookings, digital, merchandise & licensing revenue. Additional franchise & derivative revenue streams not reflected above. All figures USD.</p>
+        </div>
+
+        <!-- Revenue streams -->
+        <div class="rev-streams r d3">
+          <div class="rev-item">
+            <h4>Box Office</h4>
+            <p>Individual tickets, premium seats & group bookings across all touring venues</p>
+          </div>
+          <div class="rev-item">
+            <h4>Digital Rights</h4>
+            <p>TV broadcast, streaming, DVD and international licensing</p>
+          </div>
+          <div class="rev-item">
+            <h4>Merchandise</h4>
+            <p>Retail &amp; online product lines — Amazon, Shopify, Asian markets</p>
+          </div>
+          <div class="rev-item">
+            <h4>Sponsorship</h4>
+            <p>Corporate partners including Visa, Amex, Mastercard &amp; tour operators</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Key facts -->
+      <div>
+        <div class="section-eyebrow r">The Opportunity</div>
+        <h2 class="section-title r d1" style="font-size:clamp(26px,3.5vw,46px)">Join Us as<br><em>Founding Partners</em></h2>
+        <div class="inv-facts r d2">
+          <div class="inv-fact">
+            <div class="inv-fact-num">US$15M</div>
+            <div class="inv-fact-text">
+              <h4>Total Capital Raise</h4>
+              <p>Covers all pre-production, rehearsals, technical development (sets, animatronics, special effects), marketing and full touring logistics.</p>
+            </div>
+          </div>
+          <div class="inv-fact">
+            <div class="inv-fact-num">60%</div>
+            <div class="inv-fact-text">
+              <h4>Investor Profit Share</h4>
+              <p>All net profits — including all derivative and franchise revenue streams — distributed 60% to investors and 40% to producers.</p>
+            </div>
+          </div>
+          <div class="inv-fact">
+            <div class="inv-fact-num">100%</div>
+            <div class="inv-fact-text">
+              <h4>Capital Protection</h4>
+              <p>The world's first fully insured entertainment investment. Your principal is guaranteed by H2 Entertainment Insurance Solutions.</p>
+            </div>
+          </div>
+          <div class="inv-fact">
+            <div class="inv-fact-num">$205M</div>
+            <div class="inv-fact-text">
+              <h4>Projected Total Revenue</h4>
+              <p>Combined box office, digital, merchandise, music royalties and sponsorship across the full Asia-Pacific touring run.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STAGE WORLD GALLERY ═══ -->
+<section id="world">
+  <div class="wrap">
+    <div class="world-intro">
+      <div>
+        <div class="section-eyebrow r">Production Design</div>
+        <h2 class="section-title r d1">A World<br><em>Unlike Any Stage</em></h2>
+      </div>
+      <div class="r d2">
+        <p class="section-body">Concept design by MNK3YLABS — every scene a living painting. Immersive digital worlds, towering scenic sculptures, and spectacular lighting that transforms theatre into something altogether otherworldly.</p>
+      </div>
+    </div>
+
+    <!-- Gallery of SVG atmospheric stage scenes -->
+    <div class="gallery">
+
+      <!-- Large hero scene -->
+      <div class="gal-item r">
+        <div class="gal-bg gb1">
+          <svg width="100%" height="100%" viewBox="0 0 700 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <radialGradient id="gg1" cx="50%" cy="30%" r="60%">
+                <stop offset="0%" stop-color="#6080C0" stop-opacity=".25"/>
+                <stop offset="100%" stop-color="#040A20" stop-opacity="1"/>
+              </radialGradient>
+              <radialGradient id="gg2" cx="70%" cy="20%" r="40%">
+                <stop offset="0%" stop-color="#C8A040" stop-opacity=".12"/>
+                <stop offset="100%" stop-color="transparent"/>
+              </radialGradient>
+              <filter id="gf1"><feGaussianBlur stdDeviation="6"/></filter>
+            </defs>
+            <rect width="700" height="500" fill="#04091C"/>
+            <rect width="700" height="500" fill="url(#gg1)"/>
+            <rect width="700" height="500" fill="url(#gg2)"/>
+            <!-- Jagged peaks -->
+            <polygon points="0,500 0,280 50,210 90,260 130,160 180,220 230,110 290,190 350,80 410,170 460,90 510,150 560,70 610,130 660,60 700,100 700,500" fill="rgba(6,15,50,.85)"/>
+            <polygon points="0,500 0,340 60,270 110,320 160,240 210,290 270,200 330,260 390,180 450,240 510,170 570,220 630,160 700,200 700,500" fill="rgba(3,8,28,.92)"/>
+            <polygon points="0,500 0,400 80,350 140,400 200,340 260,390 320,320 380,380 440,310 500,360 560,300 620,350 700,310 700,500" fill="rgba(1,4,14,.97)"/>
+            <!-- Stage beams -->
+            <polygon points="230,0 205,500 255,500" fill="rgba(100,150,255,.04)"/>
+            <polygon points="350,0 330,500 370,500" fill="rgba(120,160,255,.055)"/>
+            <polygon points="470,0 447,500 493,500" fill="rgba(100,150,255,.04)"/>
+            <!-- Mist at base -->
+            <ellipse cx="350" cy="470" rx="380" ry="60" fill="rgba(80,120,220,.09)" filter="url(#gf1)"/>
+            <ellipse cx="350" cy="445" rx="300" ry="45" fill="rgba(60,100,200,.07)" filter="url(#gf1)"/>
+            <!-- Clouds -->
+            <ellipse cx="150" cy="300" rx="120" ry="35" fill="rgba(80,100,200,.06)" filter="url(#gf1)"/>
+            <ellipse cx="550" cy="280" rx="130" ry="40" fill="rgba(80,100,200,.07)" filter="url(#gf1)"/>
+            <!-- Steps center -->
+            <rect x="280" y="415" width="140" height="10" fill="rgba(201,168,76,.12)" rx="1"/>
+            <rect x="265" y="427" width="170" height="10" fill="rgba(201,168,76,.08)" rx="1"/>
+            <!-- Particles -->
+            <circle cx="100" cy="200" r="1.5" fill="#C9A84C" opacity=".6"/>
+            <circle cx="200" cy="150" r="1" fill="#C9A84C" opacity=".4"/>
+            <circle cx="300" cy="180" r="1.5" fill="#C9A84C" opacity=".5"/>
+            <circle cx="420" cy="140" r="1" fill="#C9A84C" opacity=".45"/>
+            <circle cx="550" cy="170" r="1.5" fill="#C9A84C" opacity=".4"/>
+            <circle cx="650" cy="120" r="1" fill="#C9A84C" opacity=".35"/>
+          </svg>
+        </div>
+        <div class="gal-overlay"></div>
+        <div class="gal-label">Act I — The Celestial Mountains</div>
+      </div>
+
+      <!-- Top right -->
+      <div class="gal-item r d1">
+        <div class="gal-bg gb2">
+          <svg width="100%" height="100%" viewBox="0 0 350 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <radialGradient id="gg3" cx="50%" cy="35%" r="55%">
+                <stop offset="0%" stop-color="#C06020" stop-opacity=".2"/>
+                <stop offset="100%" stop-color="#060200" stop-opacity="1"/>
+              </radialGradient>
+            </defs>
+            <rect width="350" height="250" fill="#060200"/>
+            <rect width="350" height="250" fill="url(#gg3)"/>
+            <!-- Dragon suggestion -->
+            <path d="M50 180 Q100 130 150 140 Q200 150 230 120 Q260 95 300 110" stroke="rgba(201,168,76,.3)" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <circle cx="310" cy="108" r="8" fill="rgba(201,168,76,.2)"/>
+            <circle cx="308" cy="106" r="4" fill="rgba(255,200,50,.35)"/>
+            <!-- Scales suggestion -->
+            <path d="M100 142 Q110 135 120 142" stroke="rgba(201,168,76,.15)" stroke-width="1.5" fill="none"/>
+            <path d="M140 140 Q150 133 160 140" stroke="rgba(201,168,76,.15)" stroke-width="1.5" fill="none"/>
+            <!-- Lanterns -->
+            <ellipse cx="100" cy="80" rx="9" ry="13" fill="rgba(201,168,76,.18)"/>
+            <ellipse cx="200" cy="65" rx="7" ry="11" fill="rgba(201,168,76,.15)"/>
+            <ellipse cx="280" cy="75" rx="8" ry="12" fill="rgba(201,168,76,.16)"/>
+            <line x1="100" y1="67" x2="100" y2="55" stroke="rgba(201,168,76,.25)" stroke-width="1"/>
+            <line x1="200" y1="54" x2="200" y2="44" stroke="rgba(201,168,76,.25)" stroke-width="1"/>
+            <line x1="280" y1="63" x2="280" y2="53" stroke="rgba(201,168,76,.25)" stroke-width="1"/>
+            <!-- Floor glow -->
+            <ellipse cx="175" cy="235" rx="150" ry="25" fill="rgba(150,80,10,.08)"/>
+          </svg>
+        </div>
+        <div class="gal-overlay"></div>
+        <div class="gal-label">The Dragon Palace</div>
+      </div>
+
+      <!-- Bottom right top -->
+      <div class="gal-item r d2">
+        <div class="gal-bg gb3">
+          <svg width="100%" height="100%" viewBox="0 0 350 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <radialGradient id="gg4" cx="50%" cy="60%" r="55%">
+                <stop offset="0%" stop-color="#3040A0" stop-opacity=".22"/>
+                <stop offset="100%" stop-color="#010010" stop-opacity="1"/>
+              </radialGradient>
+            </defs>
+            <rect width="350" height="250" fill="#010010"/>
+            <rect width="350" height="250" fill="url(#gg4)"/>
+            <!-- Pagoda multi-tier -->
+            <polygon points="155,80 175,20 195,80" fill="rgba(5,10,40,.95)"/>
+            <rect x="150" y="78" width="50" height="7" fill="rgba(5,10,40,.95)"/>
+            <polygon points="140,108 175,55 210,108" fill="rgba(5,10,40,.95)"/>
+            <rect x="135" y="106" width="80" height="8" fill="rgba(5,10,40,.95)"/>
+            <polygon points="125,140 175,90 225,140" fill="rgba(5,10,40,.95)"/>
+            <rect x="120" y="138" width="110" height="9" fill="rgba(5,10,40,.95)"/>
+            <rect x="145" y="147" width="60" height="70" fill="rgba(5,10,40,.95)"/>
+            <!-- Glow at base -->
+            <ellipse cx="175" cy="220" rx="100" ry="20" fill="rgba(60,80,200,.1)"/>
+            <!-- Stars -->
+            <circle cx="60" cy="50" r="1" fill="white" opacity=".25"/>
+            <circle cx="290" cy="40" r="1" fill="white" opacity=".2"/>
+            <circle cx="310" cy="80" r=".8" fill="white" opacity=".15"/>
+            <circle cx="40" cy="100" r=".8" fill="white" opacity=".18"/>
+            <!-- Gold particles -->
+            <circle cx="80" cy="160" r="1.5" fill="#C9A84C" opacity=".35"/>
+            <circle cx="280" cy="140" r="1" fill="#C9A84C" opacity=".3"/>
+          </svg>
+        </div>
+        <div class="gal-overlay"></div>
+        <div class="gal-label">The Temple Scene</div>
+      </div>
+
+      <!-- Bottom left -->
+      <div class="gal-item r d1">
+        <div class="gal-bg gb4">
+          <svg width="100%" height="100%" viewBox="0 0 350 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <radialGradient id="gg5" cx="50%" cy="50%" r="55%">
+                <stop offset="0%" stop-color="#208080" stop-opacity=".2"/>
+                <stop offset="100%" stop-color="#001010" stop-opacity="1"/>
+              </radialGradient>
+            </defs>
+            <rect width="350" height="250" fill="#001010"/>
+            <rect width="350" height="250" fill="url(#gg5)"/>
+            <!-- White Dragon Horse - animatronic -->
+            <ellipse cx="200" cy="170" rx="55" ry="28" fill="rgba(100,160,200,.2)"/>
+            <circle cx="240" cy="148" r="20" fill="rgba(100,160,200,.2)"/>
+            <!-- Flowing mane suggestion -->
+            <path d="M245 135 Q260 115 255 100 Q250 85 260 75" stroke="rgba(120,180,240,.3)" stroke-width="3" fill="none"/>
+            <path d="M250 130 Q268 112 264 98" stroke="rgba(140,200,255,.2)" stroke-width="2" fill="none"/>
+            <!-- Hooves -->
+            <rect x="165" y="195" width="8" height="18" rx="3" fill="rgba(80,130,180,.25)"/>
+            <rect x="185" y="198" width="8" height="15" rx="3" fill="rgba(80,130,180,.25)"/>
+            <rect x="210" y="197" width="8" height="16" rx="3" fill="rgba(80,130,180,.25)"/>
+            <rect x="230" y="195" width="8" height="18" rx="3" fill="rgba(80,130,180,.25)"/>
+            <!-- Mist on floor -->
+            <ellipse cx="175" cy="222" rx="160" ry="28" fill="rgba(60,120,180,.08)"/>
+            <ellipse cx="175" cy="215" rx="120" ry="20" fill="rgba(40,100,160,.07)"/>
+            <!-- Sparkle particles -->
+            <circle cx="80" cy="120" r="2" fill="#90D0FF" opacity=".4"/>
+            <circle cx="290" cy="100" r="1.5" fill="#90D0FF" opacity=".35"/>
+            <circle cx="150" cy="80" r="1" fill="#C9A84C" opacity=".45"/>
+            <circle cx="310" cy="150" r="1.5" fill="#C9A84C" opacity=".3"/>
+          </svg>
+        </div>
+        <div class="gal-overlay"></div>
+        <div class="gal-label">The White Dragon Horse</div>
+      </div>
+
+      <!-- Bottom right -->
+      <div class="gal-item r d2">
+        <div class="gal-bg gb5">
+          <svg width="100%" height="100%" viewBox="0 0 350 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <radialGradient id="gg6" cx="50%" cy="40%" r="55%">
+                <stop offset="0%" stop-color="#803020" stop-opacity=".22"/>
+                <stop offset="100%" stop-color="#100400" stop-opacity="1"/>
+              </radialGradient>
+            </defs>
+            <rect width="350" height="250" fill="#100400"/>
+            <rect width="350" height="250" fill="url(#gg6)"/>
+            <!-- Twisted ancient trees -->
+            <path d="M70 250 Q60 180 80 140 Q100 100 70 60 Q80 50 90 60 Q100 80 85 130 Q100 95 120 80 Q115 100 95 140 Q110 100 130 90 Q115 120 100 155 Q120 120 140 115" stroke="rgba(40,20,5,.9)" stroke-width="10" fill="none" stroke-linecap="round"/>
+            <path d="M280 250 Q292 185 272 148 Q252 112 278 68" stroke="rgba(40,20,5,.9)" stroke-width="8" fill="none" stroke-linecap="round"/>
+            <!-- Lanterns hanging -->
+            <ellipse cx="160" cy="100" rx="8" ry="12" fill="rgba(201,168,76,.22)"/>
+            <ellipse cx="220" cy="85" rx="6" ry="10" fill="rgba(201,168,76,.18)"/>
+            <ellipse cx="200" cy="115" rx="7" ry="11" fill="rgba(201,168,76,.2)"/>
+            <line x1="160" y1="88" x2="160" y2="65" stroke="rgba(201,168,76,.3)" stroke-width="1"/>
+            <line x1="220" y1="75" x2="220" y2="55" stroke="rgba(201,168,76,.3)" stroke-width="1"/>
+            <!-- Floor glow -->
+            <ellipse cx="175" cy="235" rx="140" ry="22" fill="rgba(150,60,20,.08)"/>
+            <!-- Central figure -->
+            <ellipse cx="175" cy="210" rx="12" ry="20" fill="rgba(20,8,2,.95)"/>
+            <circle cx="175" cy="187" r="10" fill="rgba(20,8,2,.95)"/>
+          </svg>
+        </div>
+        <div class="gal-overlay"></div>
+        <div class="gal-label">The Forest of Spirits</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ACT V: WORLD TOUR ═══ -->
+<section id="touring">
+  <div class="wrap">
+    <div class="touring-grid">
+      <div>
+        <div class="section-eyebrow r">Asia-Pacific Tour</div>
+        <h2 class="section-title r d1">The World<br><em>Awaits</em></h2>
+        <p class="section-body r d2" style="margin-top:24px;max-width:440px">Launching across the most culturally significant and commercially powerful markets in the Asia-Pacific, before expanding globally. Strategically sequenced for maximum audience reach, press coverage, and revenue.</p>
+
+        <div class="tour-list r d2">
+          <div class="tour-entry">
+            <div class="te-index">01</div>
+            <div class="te-dot"></div>
+            <div class="te-name">China</div>
+            <div class="te-tag">Opening Market</div>
+          </div>
+          <div class="tour-entry">
+            <div class="te-index">02</div>
+            <div class="te-dot"></div>
+            <div class="te-name">Singapore</div>
+            <div class="te-tag">Regional Hub</div>
+          </div>
+          <div class="tour-entry">
+            <div class="te-index">03</div>
+            <div class="te-dot"></div>
+            <div class="te-name">Ho Chi Minh City, Vietnam</div>
+            <div class="te-tag">Southeast Asia</div>
+          </div>
+          <div class="tour-entry">
+            <div class="te-index">04</div>
+            <div class="te-dot"></div>
+            <div class="te-name">Hong Kong</div>
+            <div class="te-tag">Cultural Capital</div>
+          </div>
+          <div class="tour-entry">
+            <div class="te-index">05</div>
+            <div class="te-dot"></div>
+            <div class="te-name">Perth · Adelaide · Melbourne · Brisbane · Sydney</div>
+            <div class="te-tag">Australia</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="franchise-header">
+          <div class="section-eyebrow r">Beyond the Stage</div>
+          <h2 class="section-title r d1" style="font-size:clamp(26px,3.5vw,46px)">A Scalable<br><em>IP Universe</em></h2>
+          <p class="section-body r d2" style="margin-top:20px">Monkey King is designed from the outset as a global brand platform. All derivative revenue streams follow the 60% Investor / 40% Producer split.</p>
+        </div>
+        <div class="franchise-items r d2">
+          <div class="fi">
+            <h4>Film &amp; Television</h4>
+            <p>Animated series, live-action adaptations, and streaming rights across global platforms</p>
+          </div>
+          <div class="fi">
+            <h4>Merchandise</h4>
+            <p>Retail product lines across Amazon, Shopify storefronts, and Asian markets</p>
+          </div>
+          <div class="fi">
+            <h4>Theme Parks</h4>
+            <p>Licensing opportunities with major attraction operators globally</p>
+          </div>
+          <div class="fi">
+            <h4>Web3 &amp; Digital</h4>
+            <p>NFT collectibles, gamified assets, and music streaming royalties</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ACT VI: PRODUCERS ═══ -->
+<section id="producers">
+  <div class="wrap">
+    <div class="producers-grid">
+      <div>
+        <div class="section-eyebrow r">The Producers</div>
+        <h2 class="section-title r d1">Kerry &amp; Elyse<br><em>Jewel</em></h2>
+        <p class="prod-quote r d2">"My wife and I have been prolific, successful live theatre producers in Australia and SE Asia for almost 40 years."</p>
+        <p class="section-body r d3">Born into the entertainment industry — Kerry's father was Jimmy Jewel of the legendary double act Jewel &amp; Warris — the Jewels have spent four decades building one of the most decorated theatrical production careers in the Asia-Pacific. Their son Dean, a successful producer in his own right, joins the family for Monkey King.</p>
+
+        <div class="prod-stats-grid r d3">
+          <div class="ps">
+            <div class="ps-num">6.4M</div>
+            <div class="ps-label">Total Audience</div>
+          </div>
+          <div class="ps">
+            <div class="ps-num">$486.8M</div>
+            <div class="ps-label">Gross Revenue</div>
+          </div>
+          <div class="ps">
+            <div class="ps-num">$4.8M</div>
+            <div class="ps-label">Charitable Donations</div>
+          </div>
+          <div class="ps">
+            <div class="ps-num">40 Yrs</div>
+            <div class="ps-label">Industry Experience</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="prod-legacy r d1">
+          <div class="section-eyebrow">Award Recognition</div>
+          <p>The International Variety Club of Australia — the world's greatest children's charity — recognised Elyse and Kerry Jewel with their coveted award for Contribution to Children. Philanthropy is not an afterthought. It is built into the DNA of every Jewel production.</p>
+        </div>
+
+        <div class="productions-roll r d2">
+          <p class="pr-heading">A Selection of 30+ Productions</p>
+          <div class="pr-tags">
+            <span class="pr-tag">Peter Pan</span>
+            <span class="pr-tag">Saturday Night Fever</span>
+            <span class="pr-tag">Fiddler on the Roof with Topol</span>
+            <span class="pr-tag">The Soweto Gospel Choir</span>
+            <span class="pr-tag">Sleeping Beauty on Ice</span>
+            <span class="pr-tag">High 5</span>
+            <span class="pr-tag">Noises Off</span>
+            <span class="pr-tag">Deathtrap</span>
+            <span class="pr-tag">Menopause The Musical</span>
+            <span class="pr-tag">The Anzac Tattoo</span>
+            <span class="pr-tag">Mother Goose</span>
+            <span class="pr-tag">Nunsense</span>
+            <span class="pr-tag">Gaslight</span>
+            <span class="pr-tag">Plaza Suite</span>
+            <span class="pr-tag">Caravan</span>
+          </div>
+        </div>
+
+        <div style="margin-top:20px;padding:28px 32px;border:1px solid rgba(201,168,76,.08)" class="r d3">
+          <div class="section-eyebrow" style="margin-bottom:12px">Production Partner</div>
+          <p class="section-body" style="font-size:16px">The Edge — an expert team of live event, large-scale technical and scenic production specialists — brings decades of world-class execution to the Monkey King production design and staging.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ QUOTE BAND ═══ -->
+<section id="quote-band">
+  <div class="qb-inner">
+    <div class="qb-rule r"></div>
+    <p class="qb-quote r d1">
+      "This is not merely a production —<br>it is a <strong>cultural landmark</strong>, a living myth,<br>and a <strong>once-in-a-generation investment</strong><br>in the future of global entertainment."
+    </p>
+    <div class="qb-attr r d2">Kerry Jewel · Producer & Creator · Monkey King Journey to the West</div>
+    <div class="qb-rule r d3" style="margin-top:40px;margin-bottom:0"></div>
+  </div>
+</section>
+
+<!-- ═══ PRODUCTION TIMELINE ═══ -->
+<section id="timeline">
+  <div class="wrap">
+    <div class="timeline-header">
+      <div class="section-eyebrow r">Production Roadmap</div>
+      <h2 class="section-title r d1">The Journey<br><em>Ahead</em></h2>
+      <p class="section-body r d2" style="max-width:560px;margin:20px auto 0;text-align:center">From creative development to global franchise — a clear, structured path to realising one of the most ambitious entertainment productions ever staged.</p>
+    </div>
+
+    <div class="tl-entries wrap">
+
+      <div class="tl-entry r">
+        <div class="tl-content-left">
+          <div class="tl-phase">Phase One</div>
+          <div class="tl-title">Capital Raise & Development</div>
+          <p class="tl-body">Securing the US$15M investment with full H2 insurance protection in place. Pre-production development, creative team assembly, and narrative adaptation led by Jackie Chan commences.</p>
+          <span class="tl-tag">Capital Secured · Insurance Active</span>
+        </div>
+        <div class="tl-node"><div class="tl-dot"></div></div>
+        <div class="tl-empty"></div>
+      </div>
+
+      <div class="tl-entry r d1">
+        <div class="tl-empty"></div>
+        <div class="tl-node"><div class="tl-dot"></div></div>
+        <div class="tl-content-right">
+          <div class="tl-phase">Phase Two</div>
+          <div class="tl-title">Technical Production & Rehearsals</div>
+          <p class="tl-body">Set construction, animatronic fabrication, digital projection system build, original score recording, and full cast rehearsals with international acrobatic and martial arts performers.</p>
+          <span class="tl-tag">Production Partner: The Edge</span>
+        </div>
+      </div>
+
+      <div class="tl-entry r">
+        <div class="tl-content-left">
+          <div class="tl-phase">Phase Three</div>
+          <div class="tl-title">Asia-Pacific Tour Launch</div>
+          <p class="tl-body">World premiere in China, followed by Singapore, Vietnam, Hong Kong, and the full Australian circuit — Perth, Adelaide, Melbourne, Brisbane, and Sydney. Marketing led by Dewynters.</p>
+          <span class="tl-tag">9 Destinations · Revenue Generation Begins</span>
+        </div>
+        <div class="tl-node"><div class="tl-dot"></div></div>
+        <div class="tl-empty"></div>
+      </div>
+
+      <div class="tl-entry r d1">
+        <div class="tl-empty"></div>
+        <div class="tl-node"><div class="tl-dot"></div></div>
+        <div class="tl-content-right">
+          <div class="tl-phase">Phase Four</div>
+          <div class="tl-title">Global Expansion & Franchise</div>
+          <p class="tl-body">West End and Broadway runs. Merchandise, TV/streaming licensing, and film adaptation deals activated. NFT collectibles and Web3 assets launched. Theme park licensing negotiations commence.</p>
+          <span class="tl-tag">Franchise · Merchandise · Digital Rights</span>
+        </div>
+      </div>
+
+      <div class="tl-entry r">
+        <div class="tl-content-left">
+          <div class="tl-phase">Phase Five</div>
+          <div class="tl-title">Investor Returns Distributed</div>
+          <p class="tl-body">Progressive revenue distribution commences as box office, licensing and derivative income flows through. 60% investor / 40% producer split applied across all revenue streams as agreed.</p>
+          <span class="tl-tag">60% Investor Distribution</span>
+        </div>
+        <div class="tl-node"><div class="tl-dot"></div></div>
+        <div class="tl-empty"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PARTNERS & MEDIA ═══ -->
+<section id="partners">
+  <div class="wrap">
+    <div class="partners-header">
+      <div class="section-eyebrow r">Ecosystem</div>
+      <h2 class="section-title r d1">Partners &<br><em>Associates</em></h2>
+      <p class="section-body r d2" style="max-width:500px;margin:16px auto 0;text-align:center">A world-class network of corporate, creative, and distribution partners anchoring the production's commercial foundations.</p>
+    </div>
+
+    <div class="partner-row r">
+      <div class="partner-card">
+        <div class="pc-cat">Media Partner</div>
+        <div class="pc-name">Dewynters</div>
+        <div class="pc-role">Theatrical Marketing Agency</div>
+      </div>
+      <div class="partner-card">
+        <div class="pc-cat">Production Partner</div>
+        <div class="pc-name">The Edge</div>
+        <div class="pc-role">Live Event Specialists</div>
+      </div>
+      <div class="partner-card">
+        <div class="pc-cat">Insurance Partner</div>
+        <div class="pc-name">H2 Entertainment</div>
+        <div class="pc-role">Cancellation & Abandonment Cover</div>
+      </div>
+      <div class="partner-card">
+        <div class="pc-cat">Concept Design</div>
+        <div class="pc-name">MNK3YLABS</div>
+        <div class="pc-role">Stage & Visual Design Studio</div>
+      </div>
+      <div class="partner-card">
+        <div class="pc-cat">Government Support</div>
+        <div class="pc-name">Ministry of Culture</div>
+        <div class="pc-role">People's Republic of China</div>
+      </div>
+    </div>
+
+    <div class="partner-row r d1">
+      <div class="partner-card">
+        <div class="pc-cat">Corporate Partner</div>
+        <div class="pc-name">Visa</div>
+        <div class="pc-role">Global Financial Services</div>
+      </div>
+      <div class="partner-card">
+        <div class="pc-cat">Corporate Partner</div>
+        <div class="pc-name">American Express</div>
+        <div class="pc-role">Global Financial Services</div>
+      </div>
+      <div class="partner-card">
+        <div class="pc-cat">Corporate Partner</div>
+        <div class="pc-name">Mastercard</div>
+        <div class="pc-role">Global Financial Services</div>
+      </div>
+      <div class="partner-card">
+        <div class="pc-cat">Retail Distribution</div>
+        <div class="pc-name">Amazon & Shopify</div>
+        <div class="pc-role">Merchandise Storefronts</div>
+      </div>
+      <div class="partner-card">
+        <div class="pc-cat">Distribution</div>
+        <div class="pc-name">Web3 Platforms</div>
+        <div class="pc-role">NFT & Digital Collectibles</div>
+      </div>
+    </div>
+
+    <p class="media-note r d2">"A production of this scale demands world-class partners at every level — from insurance and marketing to design and government. Monkey King has assembled exactly that."</p>
+  </div>
+</section>
+
+<!-- ═══ RISK PROFILE ═══ -->
+<section id="risk">
+  <div class="wrap">
+    <div class="section-eyebrow r">Why Invest</div>
+    <h2 class="section-title r d1">Engineered for<br><em>Investor Confidence</em></h2>
+    <p class="section-body r d2" style="margin-top:20px;max-width:620px">Every dimension of this investment has been structured to protect capital, maximise returns, and ensure the production reaches its audience — regardless of market conditions.</p>
+
+    <div class="risk-grid r d2">
+      <div class="risk-card">
+        <div class="risk-card-head">
+          <div class="risk-icon">🛡</div>
+          <h3>Full Capital Protection</h3>
+        </div>
+        <p>The world's first fully insured entertainment investment. H2 Entertainment Solutions provides a Cancellation & Abandonment Insurance Policy guaranteeing complete return of principal if the production does not proceed. Your money is safe — full stop.</p>
+      </div>
+      <div class="risk-card">
+        <div class="risk-card-head">
+          <div class="risk-icon">📊</div>
+          <h3>Low Breakeven Threshold</h3>
+        </div>
+        <p>At just 35.3% occupancy, the production breaks even — an extraordinarily conservative threshold by live entertainment standards. Industry benchmarks typically require 60-70% occupancy. The margin for profit is wide and the risk threshold is low.</p>
+      </div>
+      <div class="risk-card">
+        <div class="risk-card-head">
+          <div class="risk-icon">🌏</div>
+          <h3>Diversified Revenue Model</h3>
+        </div>
+        <p>Revenue flows from box office, group bookings, digital rights, TV and streaming licensing, merchandise, music royalties, sponsorships, NFT assets, and long-term franchise spin-offs. No single channel carries the full weight of returns.</p>
+      </div>
+      <div class="risk-card">
+        <div class="risk-card-head">
+          <div class="risk-icon">🎭</div>
+          <h3>Proven Production Team</h3>
+        </div>
+        <p>40 years. 6.4 million audience members. $486.8 million in gross revenue. The Jewels bring a track record of commercial success that is virtually unmatched in Asia-Pacific live theatre — reducing execution risk at every level of the production.</p>
+      </div>
+
+      <div class="risk-highlight">
+        <div class="rh-stat">
+          <div class="rh-num count-num" data-target="35.3" data-suffix="%">35.3%</div>
+          <div class="rh-label">Breakeven Occupancy</div>
+        </div>
+        <div class="rh-divider"></div>
+        <div class="rh-stat">
+          <div class="rh-num count-num" data-target="100" data-suffix="%">100%</div>
+          <div class="rh-label">Capital Protected</div>
+        </div>
+        <div class="rh-divider"></div>
+        <div class="rh-stat">
+          <div class="rh-num" style="font-size:clamp(24px,3vw,40px)">US$104M</div>
+          <div class="rh-label">Forecasted Net Profit</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CHARITABLE GIVING ═══ -->
+<section id="giving">
+  <div class="giving-inner">
+    <div class="section-eyebrow r">Social Purpose</div>
+    <h2 class="section-title r d1">Performing<br><em>for Good</em></h2>
+    <div class="ornament r d1" style="justify-content:center">
+      <div class="ornament-line"></div>
+      <div class="ornament-center">· · ·</div>
+    </div>
+    <p class="section-body r d2">Monkey King carries a dedicated royalty stream to aid disadvantaged children around the world — ensuring that every performance creates a lasting positive impact for those who need it most. The International Variety Club of Australia — the world's greatest children's charity — has already recognised the Jewels' lifetime of giving. This production continues that legacy.</p>
+  </div>
+</section>
+
+<!-- ═══ INVEST CTA ═══ -->
+<section id="invest">
+  <div class="invest-inner">
+    <div class="section-eyebrow r" style="justify-content:center">Become a Founding Partner</div>
+    <h2 class="section-title r d1">Join the<br><em>Journey</em></h2>
+    <p class="section-body r d2">This is a rare opportunity to participate in a landmark global entertainment production. Full capital protection. Extraordinary return potential. The pride of bringing one of the world's greatest stories to audiences everywhere — as a founding partner of history.</p>
+
+    <div class="hero-cta-row r d2" style="justify-content:center;margin-bottom:60px">
+      <a href="mailto:kerry@monkey-king.net" class="cta-main">Request Investment Prospectus</a>
+      <a href="tel:+61410058512" class="cta-outline">Speak with Kerry Jewel</a>
+    </div>
+
+    <div class="contact-trio r d3">
+      <a href="mailto:kerry@monkey-king.net" class="ct-card">
+        <div class="ct-label">Email</div>
+        <div class="ct-val">kerry@monkey-king.net</div>
+      </a>
+      <a href="tel:+61410058512" class="ct-card">
+        <div class="ct-label">Telephone</div>
+        <div class="ct-val">+61 (0) 410 058 512</div>
+      </a>
+      <div class="ct-card">
+        <div class="ct-label">Producer &amp; Creator</div>
+        <div class="ct-val">Kerry Jewel</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ EXTENDED FOOTER ═══ -->
+<div class="footer-extended">
+  <div class="footer-ext-grid">
+    <div class="fe-brand">
+      <span class="nav-brand-top">Monkey King</span>
+      <span class="nav-brand-bottom">Journey to the West</span>
+      <div class="ornament" style="margin:16px 0">
+        <div class="ornament-line"></div>
+      </div>
+      <p>A landmark immersive stage production based on one of the world's greatest literary masterpieces — presented by Jewel Productions as a global entertainment investment opportunity.</p>
+    </div>
+    <div class="fe-col">
+      <h4>Production</h4>
+      <ul>
+        <li><span>The Vision</span></li>
+        <li><span>Creative Design</span></li>
+        <li><span>Animatronics & Effects</span></li>
+        <li><span>Original Score</span></li>
+        <li><span>International Cast</span></li>
+      </ul>
+    </div>
+    <div class="fe-col">
+      <h4>Investment</h4>
+      <ul>
+        <li><a href="#investment">ROI Projections</a></li>
+        <li><a href="#risk">Capital Protection</a></li>
+        <li><a href="#touring">World Tour</a></li>
+        <li><a href="#partners">Partners</a></li>
+        <li><a href="#invest">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="fe-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:kerry@monkey-king.net">kerry@monkey-king.net</a></li>
+        <li><a href="tel:+61410058512">+61 (0) 410 058 512</a></li>
+        <li><span>Kerry Jewel</span></li>
+        <li><span>Producer & Creator</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ FOOTER BAR ═══ -->
+<footer>
+  <div class="footer-left">© A Jewel Production · All Rights Reserved</div>
+  <div class="footer-center">
+    Monkey King: Journey to the West
+    <span>A Global Entertainment Investment · Fully Insured · H2 Entertainment Solutions</span>
+  </div>
+  <div class="footer-right">A New Era in Global Entertainment</div>
+</footer>
+
+<script>
+/* ── PRELOADER ── */
+window.addEventListener('load',()=>{
+  const pre=document.getElementById('preloader');
+  setTimeout(()=>{
+    pre.classList.add('open');
+    setTimeout(()=>{
+      pre.classList.add('done');
+      pre.style.display='none';
+    },1600);
+  },2200);
+});
+
+/* ── NAV SCROLL ── */
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('solid',scrollY>80);
+},{passive:true});
+
+/* ── MOBILE MENU ── */
+const menuOpen=document.getElementById('menuOpen');
+const menuClose=document.getElementById('menuClose');
+const mobileMenu=document.getElementById('mobileMenu');
+menuOpen&&menuOpen.addEventListener('click',()=>mobileMenu.classList.add('open'));
+menuClose&&menuClose.addEventListener('click',()=>mobileMenu.classList.remove('open'));
+document.querySelectorAll('.mob-link').forEach(a=>{
+  a.addEventListener('click',()=>mobileMenu.classList.remove('open'));
+});
+
+/* ── CURSOR GLOW ── */
+const cg=document.getElementById('cursor-glow');
+let cx=0,cy=0,tx=0,ty=0;
+document.addEventListener('mousemove',e=>{tx=e.clientX;ty=e.clientY});
+function animCursor(){
+  cx+=(tx-cx)*.08;cy+=(ty-cy)*.08;
+  cg.style.left=cx+'px';cg.style.top=cy+'px';
+  requestAnimationFrame(animCursor);
+}
+animCursor();
+
+/* ── INTERSECTION OBSERVER REVEALS ── */
+const ro=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target)}
+  });
+},{threshold:0.08,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.r').forEach(el=>ro.observe(el));
+
+/* ── HERO PARALLAX ON MOUSE MOVE ── */
+const heroContent=document.querySelector('.hero-content');
+const heroAtmo=document.querySelector('.hero-atmo');
+document.getElementById('hero')&&document.getElementById('hero').addEventListener('mousemove',e=>{
+  const rect=document.getElementById('hero').getBoundingClientRect();
+  const x=(e.clientX-rect.left)/rect.width-.5;
+  const y=(e.clientY-rect.top)/rect.height-.5;
+  if(heroContent){
+    heroContent.style.transform=`translate(${x*12}px,${y*8}px)`;
+  }
+  if(heroAtmo){
+    heroAtmo.style.transform=`translate(${x*6}px,${y*4}px)`;
+  }
+});
+document.getElementById('hero')&&document.getElementById('hero').addEventListener('mouseleave',()=>{
+  if(heroContent)heroContent.style.transform='';
+  if(heroAtmo)heroAtmo.style.transform='';
+});
+
+/* ── HERO PARTICLES ── */
+const pc=document.getElementById('hpContainer');
+if(pc){
+  for(let i=0;i<28;i++){
+    const p=document.createElement('div');
+    p.className='hp';
+    const s=Math.random()*2.5+.8;
+    p.style.cssText=`left:${Math.random()*100}%;width:${s}px;height:${s}px;animation-duration:${Math.random()*18+10}s;animation-delay:${Math.random()*18}s;`;
+    pc.appendChild(p);
+  }
+}
+
+/* ── STATS MARQUEE ── */
+const stats=[
+  {num:'US$15M',label:'Production Budget'},
+  {num:'US$205M',label:'Projected Revenue'},
+  {num:'US$104M',label:'Forecasted Net Profit'},
+  {num:'35.3%',label:'Breakeven Point'},
+  {num:'60 / 40',label:'Investor — Producer Split'},
+  {num:'100%',label:'Capital Protected'},
+  {num:'9',label:'Tour Destinations'},
+  {num:'40 Years',label:'Producer Experience'},
+  {num:'6.4M',label:'Past Audience Reach'},
+  {num:'$486.8M',label:'Past Gross Revenue'},
+];
+function buildMarquee(){
+  const t=document.getElementById('marqueeTrack');
+  if(!t)return;
+  const doubled=[...stats,...stats];
+  doubled.forEach((s,i)=>{
+    const div=document.createElement('div');
+    div.className='marquee-item';
+    div.innerHTML=`<div><div class="mi-num">${s.num}</div><div class="mi-label">${s.label}</div></div>`;
+    t.appendChild(div);
+    if(i<doubled.length-1){
+      const sep=document.createElement('div');
+      sep.className='marquee-sep';
+      t.appendChild(sep);
+    }
+  });
+}
+buildMarquee();
+
+/* ── COUNTER ANIMATION ── */
+function animateCounter(el){
+  const target=parseFloat(el.dataset.target);
+  const suffix=el.dataset.suffix||'';
+  const duration=2000;
+  const start=performance.now();
+  function update(now){
+    const elapsed=now-start;
+    const progress=Math.min(elapsed/duration,1);
+    const ease=1-Math.pow(1-progress,3);
+    const val=target*ease;
+    el.textContent=(Number.isInteger(target)?Math.floor(val):val.toFixed(1))+suffix;
+    if(progress<1)requestAnimationFrame(update);
+  }
+  requestAnimationFrame(update);
+}
+const counterObs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting&&!e.target.dataset.counted){
+      e.target.dataset.counted='1';
+      animateCounter(e.target);
+    }
+  });
+},{threshold:0.5});
+document.querySelectorAll('.count-num[data-target]').forEach(el=>counterObs.observe(el));
+
+/* ── SCROLL PROGRESS BAR ── */
+const progressBar=document.createElement('div');
+progressBar.style.cssText=`
+  position:fixed;top:0;left:0;height:2px;
+  background:linear-gradient(to right,var(--gold-dim),var(--gold-bright));
+  z-index:9998;width:0%;transition:width .1s;
+  pointer-events:none;
+`;
+document.body.appendChild(progressBar);
+window.addEventListener('scroll',()=>{
+  const scrolled=scrollY/(document.body.scrollHeight-innerHeight);
+  progressBar.style.width=(scrolled*100)+'%';
+},{passive:true});
+
+/* ── GALLERY HOVER TILT ── */
+document.querySelectorAll('.gal-item').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const rect=card.getBoundingClientRect();
+    const x=(e.clientX-rect.left)/rect.width-.5;
+    const y=(e.clientY-rect.top)/rect.height-.5;
+    card.style.transform=`perspective(800px) rotateY(${x*4}deg) rotateX(${-y*3}deg) scale(1.02)`;
+    card.style.transition='transform .1s';
+  });
+  card.addEventListener('mouseleave',()=>{
+    card.style.transform='';
+    card.style.transition='transform .5s cubic-bezier(.16,1,.3,1)';
+  });
+});
+
+/* ── SMOOTH SCROLL ── */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}
+  });
+});
+
+/* ── SUBTLE SPOTLIGHT PARALLAX ON SCROLL ── */
+let lastScrollY=0;
+window.addEventListener('scroll',()=>{
+  const delta=scrollY-lastScrollY;
+  document.querySelectorAll('.spotlight').forEach((sp,i)=>{
+    const factor=(i%2===0)?0.3:-0.3;
+    sp.style.marginTop=(-scrollY*0.04*factor)+'px';
+  });
+  lastScrollY=scrollY;
+},{passive:true});
+</script>
+</body>
+</html>
